@@ -1,0 +1,59 @@
+#+title: Lunar Systems
+
+* Preface
+This documentation is related to my *personal* Nix-based system configuration, designed with three core principles:
+
+- *Minimalism*: Only essential components are included, reducing attack surface and maintenance overhead. Suckless software is something which affascinate me.
+- *Wayland-native*: Built around modern display protocols for better security and performance, X11 is stripped out.
+- *Security-focused*: Incorporating paranoid-level security practices by default
+
+The following pages detail how these components work together to create a coherent, maintainable, and secure computing environment using the declarative power of Nix.
+
+All configuration files and documentation are version controlled and can be reproduced exactly as described here.
+
+* NixOS Unstable
+
+My systems are built upon NixOS using the unstable channel to maintain a rolling release approach.
+
+I am a big fan of Opensuse Tumbleweed and Gentoo. These 2 shares this part of being rolling release.
+
+* Core Inputs
+
+** Nixpkgs
+   + *Purpose*: Primary package repository providing all system software
+   + *Benefits*: Vast collection of reproducible packages
+   + *Usage*: Referenced as the primary source for all system packages
+
+** Lanzaboote
+   + *Purpose*: Implements secure boot for NixOS
+   + *Benefits*: Verifies boot integrity with cryptographic signatures
+   + *Usage*: Prevents unauthorized boot code execution and boot-level attacks
+
+** Agenix
+   + *Purpose*: Secret management using age encryption
+   + *Benefits*: Allows secure storage of sensitive data in the Nix store
+   + *Usage*: Manages SSH keys, API tokens, and other sensitive configuration data
+
+* System Enhancement
+
+** Impermanence
+   + *Purpose*: Selective file persistence across reboots
+   + *Benefits*: Combines immutability with necessary state preservation
+   + *Usage*: Defines specific files and directories that persist between system generations
+
+* Additional Resources
+
+** Nixos-hardware
+   + *Purpose*: Hardware-specific optimizations
+   + *Benefits*: Make others fix my laptop
+   + *Usage*: -
+
+** Nix index database
+   + *Purpose*: Searchable index of Nix packages and files
+   + *Benefits*: Quickly locate packages containing specific files
+   + *Usage*: Enhances command-not-found functionality and package discovery
+
+** Stylix
+   + *Purpose*: System-wide theme management
+   + *Benefits*: Consistent appearance across applications
+   + *Usage*: Defines colors, fonts, and other visual elements system-wide
