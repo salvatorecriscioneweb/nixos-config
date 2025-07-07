@@ -6,9 +6,7 @@ name:
 { system }:
 let
   hostConfig = ../../host/${name};
-  # TODO: In the future make more configurable
   homeConfig = ../../home-manager/default.nix;
-
   systemFunc = nixpkgs.lib.nixosSystem;
 in
 systemFunc {
@@ -21,31 +19,26 @@ systemFunc {
     inputs.nix-index-database.nixosModules.nix-index
     inputs.stylix.nixosModules.stylix
     inputs.home-manager.nixosModules.home-manager
-    # inputs.microvm.nixosModules.host
     {
-      environment.systemPackages = [
-        inputs.agenix.packages.${system}.default
-        inputs.needy-girl-overdose-theme-nix.packages.${system}.default
+      environment.systemPackages = with inputs; [
+        agenix.packages.${system}.default
+        needy-girl-overdose-theme-nix.packages.${system}.default
       ];
 
-      nixpkgs.overlays = with inputs; [
-        emacs-overlay.overlay
-      ];
+      # nixpkgs.overlays = with inputs; [ ];
 
       imports = [
-        "${inputs.nix-mineral}/nix-mineral.nix"
         ./secrets.nix
       ];
 
     }
-    # My Host Config imported previously
     hostConfig
     {
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
         backupFileExtension = "backup";
-        sharedModules = [ ];
+        # sharedModules = [ ];
         users.ssalva = import homeConfig;
       };
     }

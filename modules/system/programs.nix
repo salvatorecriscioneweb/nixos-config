@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs = {
     fish.enable = true;
@@ -7,14 +7,13 @@
       enable = true;
       enableSSHSupport = true;
 
-      pinentryPackage = pkgs.pinentry-gnome3;
       settings = {
-        default-cache-ttl = 1800;
+        default-cache-ttl = 60;
+        max-cache-ttl = 120;
       };
     };
 
     light.enable = true;
-    seahorse.enable = true;
 
     adb.enable = true;
 
@@ -24,7 +23,10 @@
   };
 
   environment.systemPackages = with pkgs; [
+    killall
+
     xfce.thunar-archive-plugin
+    xfce.catfish
 
     # Git
     git

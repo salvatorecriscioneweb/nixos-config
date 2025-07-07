@@ -5,7 +5,8 @@
       layer = "top";
       border-radius = 0;
       margin = 10;
-      anchor = "bottom-right";
+      anchor = "top-right";
+      default-timeout = 10;
     };
   };
 }

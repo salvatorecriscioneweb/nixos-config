@@ -7,26 +7,26 @@
     packages = with pkgs; [ terminus_font ];
   };
 
-  services = {
-    displayManager.ly = {
-      enable = true;
-      x11Support = false;
-      settings = {
-        animation = "colormix";
-        blank_password = true;
-        brightness_down_cmd = "${pkgs.light}/bin/light -U 10";
-        brightness_up_cmd = "${pkgs.light}/bin/light -A 10";
-        # Color mixing animation first color id
-        colormix_col1 = "0x00FF0000";
+  # services = {
+  # displayManager.ly = {
+  #   enable = true;
+  #   x11Support = false;
+  #   settings = {
+  #     animation = "colormix";
+  #     blank_password = true;
+  #     brightness_down_cmd = "${pkgs.light}/bin/light -U 10";
+  #     brightness_up_cmd = "${pkgs.light}/bin/light -A 10";
+  #     # Color mixing animation first color id
+  #     colormix_col1 = "0x00FF0000";
 
-        # Color mixing animation second color id
-        colormix_col2 = "0x000000FF";
+  #     # Color mixing animation second color id
+  #     colormix_col2 = "0x000000FF";
 
-        # Color mixing animation third color id
-        colormix_col3 = "0x20000000";
-      };
-    };
-  };
+  #     # Color mixing animation third color id
+  #     colormix_col3 = "0x20000000";
+  #   };
+  # };
+  # };
 
   boot = {
     loader = {

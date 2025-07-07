@@ -8,7 +8,6 @@
       "/var/lib/sbctl"
       "/var/lib/fprint"
       "/var/lib/cloudflare-warp"
-      # "/var/lib/microvms"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/etc/ssh"
@@ -39,22 +38,14 @@
 
         # Locals
         ".local/share/warp"
-        ".local/share/keyrings"
+        ".local/share/kwalletd"
         ".local/share/direnv"
 
         # Thunderbird
         ".cache/thunderbird"
 
         # Config
-        ".config/emacs"
-        ".config/doom"
-        ".config/Slack"
-        ".config/gnome-boxes"
-        ".config/spotify"
-        ".config/BraveSoftware"
-        ".config/google-chrome"
-        ".config/xfce4"
-
+        ".config"
         ".local/share/doom"
       ];
       files = [

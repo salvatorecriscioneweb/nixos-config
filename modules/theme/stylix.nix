@@ -4,21 +4,19 @@
     enable = true;
 
     targets = {
-      qt.enable = false;
       chromium.enable = false;
-      gtk.enable = lib.mkDefault false;
     };
 
-    base16Scheme = ../../assets/base16-oxocarbon.yaml;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-light.yaml";
 
     # Fonts
     fonts =
       let
-        p = pkgs.nerd-fonts.atkynson-mono;
-        p_norm = pkgs.ibm-plex;
+        p = pkgs.nerd-fonts.caskaydia-mono;
+        p_norm = pkgs.inter;
 
-        nmono = "AtkynsonMono Nerd Font";
-        nnorm = "IBM Plex Serif";
+        nmono = "CaskaydiaMono Nerd Font";
+        nnorm = "Inter";
       in
       {
         serif = {
@@ -42,8 +40,8 @@
         };
 
         sizes = {
-          desktop = 12;
-          applications = 12;
+          desktop = 11;
+          applications = 11;
           terminal = 13;
         };
       };

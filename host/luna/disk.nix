@@ -31,6 +31,12 @@ in
         mv /btrfs_tmp/home "/btrfs_tmp/old_homes/$timestamp"
     fi
 
+    if [[ -e /btrfs_tmp/root ]]; then
+        mkdir -p /btrfs_tmp/old_roots
+        timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+        mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
+    fi
+
     delete_subvolume_recursively() {
         IFS=$'\n'
         for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
@@ -39,12 +45,16 @@ in
         btrfs subvolume delete "$1"
     }
 
-    for i in $(find /btrfs_tmp/old_homes/ -maxdepth 1 -mtime +10); do
+    for i in $(find /btrfs_tmp/old_homes/ -maxdepth 1 -mtime +5); do
         delete_subvolume_recursively "$i"
     done
 
-    btrfs subvolume snapshot /btrfs_tmp/root-blank /btrfs_tmp/root
-    btrfs subvolume snapshot /btrfs_tmp/home-blank /btrfs_tmp/home
+    for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +5); do
+        delete_subvolume_recursively "$i"
+    done
+
+    btrfs subvolume create /btrfs_tmp/root
+    btrfs subvolume create /btrfs_tmp/home
 
     umount /btrfs_tmp
   '';

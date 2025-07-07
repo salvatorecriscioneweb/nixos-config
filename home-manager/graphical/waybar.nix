@@ -26,6 +26,8 @@
             "backlight"
             "custom/separator"
             "tray"
+            "custom/separator"
+            "clock"
             "custom/empty-space"
           ];
           "custom/separator" = {
@@ -38,7 +40,7 @@
             on-click = "activate";
             on-click-middle = "close";
             ignore-list = [
-              "foot"
+              "kitty"
             ];
           };
           "backlight" = {

@@ -7,9 +7,8 @@
 {
   imports = [
     # --- [ Services ] ---
-    ./services/kanshi.nix
-    ./services/swayidle.nix
-    ./services/mako.nix
+    # ./services/kanshi.nix
+    # ./services/swayidle.nix
 
     # --- [ CLI ] ---
     ./cli/git.nix
@@ -18,7 +17,7 @@
     ./cli/starship.nix
     ./cli/helix.nix
     ./cli/gpg.nix
-    ./cli/screenshot.nix
+    # ./cli/screenshot.nix
     ./cli/fastfetch.nix
     ./cli/ripgrep.nix
     ./cli/fd.nix
@@ -32,23 +31,22 @@
     # --- [ Graphical ] ---
     ./graphical/foot.nix
     ./graphical/emacs.nix
-    ./graphical/rofi.nix
-    ./graphical/waybar.nix
-    ./graphical/swaylock.nix
+    # ./graphical/rofi.nix
+    # ./graphical/waybar.nix
+    # ./graphical/swaylock.nix
     ./graphical/browsers.nix
-    # ./graphical/river.nix
-    ./graphical/labwc.nix
-    ./graphical/zathura.nix
+    # ./graphical/labwc.nix
+    # ./graphical/zathura.nix
   ];
 
   home.packages = with pkgs; [
+    chafa
     age
     wl-clipboard
-    imv
-    playerctl
+    kdePackages.kleopatra
 
     # -- [ VMs ] --
-    gnome-boxes
+    #  gnome-boxes
 
     # -- [ Graphics ] --
     gimp3
@@ -85,19 +83,9 @@
     pointerCursor = {
       package = pkgs.phinger-cursors;
       name = "phinger-cursors-light";
-      size = 36;
+      size = 32;
       x11.enable = false;
       gtk.enable = true;
-    };
-  };
-
-  gtk = {
-    enable = true;
-    theme.name = lib.mkForce "NeedyOverdose";
-
-    iconTheme = {
-      name = "Vimix-White";
-      package = pkgs.vimix-icon-theme;
     };
   };
 
@@ -105,11 +93,8 @@
     vencord.enable = false;
     blender.enable = false;
     tmux.enable = false;
-    qt.enable = false;
     qutebrowser.enable = false;
-    kde.enable = false;
     emacs.enable = false;
-    gtk.enable = false;
     waybar.enable = false;
   };
 
@@ -119,8 +104,8 @@
       let
         default_browser = "google-chrome.desktop";
         default_terminal = "footclient.desktop";
-        default_image_viewer = "imv.desktop";
-        default_document_viewer = "zathura.desktop";
+        default_image_viewer = "gwenview.desktop";
+        default_document_viewer = "okular.desktop";
       in
       {
         "text/html" = default_browser;
@@ -141,8 +126,6 @@
     in
     ''
       file://${home}/dev
-      file://${home}/dev/personal
-      file://${home}/dev/coingaming
       file://${home}/Notes
       file://${home}/Downloads
       file://${home}/Documents

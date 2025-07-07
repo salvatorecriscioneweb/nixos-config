@@ -9,7 +9,6 @@
             {
               criteria = "eDP-1";
               adaptiveSync = true;
-              scale = 1.15;
             }
           ];
         };
@@ -37,7 +36,7 @@
           outputs = [
             {
               criteria = "eDP-1";
-              position = "2560,0";
+              position = "400,1440";
             }
             {
               criteria = "Lenovo Group Limited LEN P27h-10 0x30585944";

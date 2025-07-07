@@ -9,7 +9,7 @@ This documentation is related to my *personal* Nix-based system configuration, d
 
 The following pages detail how these components work together to create a coherent, maintainable, and secure computing environment using the declarative power of Nix.
 
-All configuration files and documentation are version controlled and can be reproduced exactly as described here.
+All configuration files and documentation are version controlled, and i implement the [[https://grahamc.com/blog/erase-your-darlings/][Erase your darlings]] approach, so yes the entire FS is wiped each reboot. [[https://github.com/salvatorecriscioneweb/nixos-config/blob/main/host/luna/disk.nix#L24][Including home directory]].
 
 * Previews
 [[https://raw.githubusercontent.com/salvatorecriscioneweb/nixos-config/refs/heads/main/assets/preview_2.jpg]]

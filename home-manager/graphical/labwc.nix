@@ -1,10 +1,6 @@
 { pkgs, ... }:
 {
   home = {
-    packages = with pkgs; [
-      xfce.xfce4-panel
-    ];
-
     file = {
       ".local/share/themes/Clia" = {
         source = ../../assets/Clia;
@@ -19,12 +15,9 @@
       "${pkgs.blueman}/bin/blueman-applet &"
       "${pkgs.xfce.xfce4-panel}/bin/xfce4-panel &"
       "${pkgs.light}/bin/light -S 50 &"
-      "${pkgs.foot}/bin/foot --server &"
       "${pkgs.swaybg}/bin/swaybg -i ~/.config/wallpapers/wallhaven-45kjv5.jpg &"
-      "${pkgs.waybar}/bin/waybar &"
-      # Wait a bit before trigger everything
       "${pkgs.networkmanagerapplet}/bin/nm-applet &"
-      "sleep 2 && systemctl --user restart app-com.cloudflare.WarpTaskbar@autostart.service &"
+      "${pkgs.waybar}/bin/waybar &"
     ];
     environment = [
       "XDG_CURRENT_DESKTOP=labwc:wlroots"
@@ -34,7 +27,7 @@
       "MOZ_ENABLE_WAYLAND=1"
       "ELECTRON_OZONE_PLATFORM_HINT=1"
     ];
-    xwayland.enable = true;
+    xwayland.enable = false;
     systemd = {
       enable = true;
       extraCommands = [
@@ -43,6 +36,7 @@
         "systemctl --user restart pipewire"
         "systemctl --user restart kanshi"
         "systemctl --user restart swayidle"
+        "systemctl --user restart app-com.cloudflare.WarpTaskbar@autostart.service"
       ];
     };
     rc = {
@@ -50,11 +44,9 @@
         name = "Clia";
         cornerRadius = 0;
         font = {
-          "@name" = "VictorMono Nerd Font";
-          "@size" = 14;
+          "@name" = "Inter";
+          "@size" = 13;
         };
-        gap = 14;
-        dropShadows = "yes";
       };
       keyboard = {
         default = true;
@@ -135,7 +127,7 @@
             "@key" = "W-e";
             action = {
               "@name" = "Execute";
-              "@command" = "${pkgs.emacs-unstable-pgtk}/bin/emacsclient -c";
+              "@command" = "${pkgs.emacs-pgtk}/bin/emacsclient -c";
             };
           }
           {
@@ -208,6 +200,12 @@
             };
           }
           {
+            "@key" = "W-f";
+            action = {
+              "@name" = "Maximize";
+            };
+          }
+          {
             "@key" = "W-S-f";
             action = {
               "@name" = "ToggleFullscreen";
@@ -224,7 +222,7 @@
             "@key" = "W-Return";
             action = {
               "@name" = "Execute";
-              "@command" = "${pkgs.foot}/bin/footclient";
+              "@command" = "${pkgs.foot}/bin/foot";
             };
           }
           {
@@ -258,16 +256,15 @@
         default = true;
       };
       desktops = {
-        popupTime = 500;
         names = [
           {
-            name = "Dev";
+            name = "Emacs";
           }
           {
-            name = "Browser";
+            name = "Web";
           }
           {
-            name = "Msg";
+            name = "Terms";
           }
           {
             name = "Others";
@@ -376,14 +373,14 @@
             label = "Emacs (Client)";
             action = {
               name = "Execute";
-              command = "${pkgs.emacs-unstable-pgtk}/bin/emacsclient -c";
+              command = "${pkgs.emacs-pgtk}/bin/emacsclient -c";
             };
           }
           {
             label = "Emacs";
             action = {
               name = "Execute";
-              command = "${pkgs.emacs-unstable-pgtk}/bin/emacs";
+              command = "${pkgs.emacs-pgtk}/bin/emacs";
             };
           }
           {

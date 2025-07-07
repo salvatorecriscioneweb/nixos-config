@@ -10,11 +10,8 @@
         pad = "10x10 center";
         line-height = 16;
       };
-      # csd = {
-      #   preferred = "none";
-      # };
       colors = {
-        alpha = lib.mkForce 0.98;
+        alpha = lib.mkForce 0.95;
       };
       scrollback = {
         lines = 10000;

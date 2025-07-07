@@ -1,12 +1,11 @@
 { pkgs, ... }:
 {
-  programs.labwc.enable = true;
+  services = {
+    desktopManager.plasma6.enable = true;
+    displayManager.sddm.enable = true;
+    displayManager.sddm.wayland.enable = true;
+  };
   xdg.portal = {
     enable = true;
-    config.common.default = "*";
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
-    ];
   };
 }

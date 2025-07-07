@@ -43,20 +43,16 @@
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
+      # inputs.home-manager.follows = "home-manager";
     };
 
     # --- [ System Hardening ] ---
-    nix-mineral = {
-      url = "github:cynicsketch/nix-mineral"; # Refers to a specific commit and follows that until you change it
-      flake = false;
-    };
-
-    # --- [ Emacs ] ---
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Removed as breaks the root wipe FS
+    # TODO: Check if i can fix it
+    # nix-mineral = {
+    #   url = "github:cynicsketch/nix-mineral"; # Refers to a specific commit and follows that until you change it
+    #   flake = false;
+    # };
   };
 
   outputs =

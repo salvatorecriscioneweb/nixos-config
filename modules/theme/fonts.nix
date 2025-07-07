@@ -8,14 +8,13 @@
 
     packages = with pkgs; [
       noto-fonts-emoji
-      ibm-plex
+      inter
 
       # -- [ Emacs ] --
       nerd-fonts.symbols-only
 
       # -- [ Nerd Fonts ] --
-      nerd-fonts.liberation
-      nerd-fonts.victor-mono
+      nerd-fonts.caskaydia-mono
     ];
   };
 }
