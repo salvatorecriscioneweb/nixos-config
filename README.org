@@ -3,13 +3,20 @@
 * Preface
 This documentation is related to my *personal* Nix-based system configuration, designed with three core principles:
 
-- *Minimalism*: Only essential components are included, reducing attack surface and maintenance overhead. Suckless software is something which affascinate me.
-- *Wayland-native*: Built around modern display protocols for better security and performance, X11 is stripped out.
-- *Security-focused*: Incorporating paranoid-level security practices by default
+- *Minimalism*: Only essential components are included, reducing maintenance overhead and complexity. S*ckless software is something which fascinate me.
+- *Wayland-native*: Built around modern display protocols for better security and performance, X11 is stripped out. LabWC + XFCE Panel is used mostly.
+- *Security-focused*: Incorporating paranoid-level security practices by default.
 
 The following pages detail how these components work together to create a coherent, maintainable, and secure computing environment using the declarative power of Nix.
 
 All configuration files and documentation are version controlled and can be reproduced exactly as described here.
+
+* Previews
+[[https://raw.githubusercontent.com/salvatorecriscioneweb/nixos-config/refs/heads/main/assets/preview_2.jpg]]
+[[https://raw.githubusercontent.com/salvatorecriscioneweb/nixos-config/refs/heads/main/assets/preview_1.jpg]]
+
+
+Wallpaper from: [[https://wallhaven.cc/w/45kjv5][Wallhaven.cc]]
 
 * NixOS Unstable
 
