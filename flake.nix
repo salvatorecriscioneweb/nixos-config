@@ -18,10 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    needy-girl-overdose-theme-nix = {
-      url = "github:salvatorecriscioneweb/Needy_girl_overdose_theme-nix";
-    };
-
     # --- [ Agenix Shhh ] ---
     agenix = {
       url = "github:ryantm/agenix";

@@ -22,7 +22,6 @@ systemFunc {
     {
       environment.systemPackages = with inputs; [
         agenix.packages.${system}.default
-        needy-girl-overdose-theme-nix.packages.${system}.default
       ];
 
       # nixpkgs.overlays = with inputs; [ ];

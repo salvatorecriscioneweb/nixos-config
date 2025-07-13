@@ -71,6 +71,9 @@
   ];
 
   home.file = {
+    ".config/doom/config.org" = {
+      source = ../assets/doom.org;
+    };
     ".config/wallpapers" = {
       source = ../assets/wallpapers;
       recursive = true;
@@ -84,7 +87,7 @@
       package = pkgs.phinger-cursors;
       name = "phinger-cursors-light";
       size = 32;
-      x11.enable = false;
+      x11.enable = true;
       gtk.enable = true;
     };
   };
@@ -98,39 +101,41 @@
     waybar.enable = false;
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications =
-      let
-        default_browser = "google-chrome.desktop";
-        default_terminal = "footclient.desktop";
-        default_image_viewer = "gwenview.desktop";
-        default_document_viewer = "okular.desktop";
-      in
-      {
-        "text/html" = default_browser;
-        "x-scheme-handler/http" = default_browser;
-        "x-scheme-handler/https" = default_browser;
-        "x-scheme-handler/about" = default_browser;
-        "x-scheme-handler/unknown" = default_browser;
-        "x-scheme-handler/terminal" = lib.mkDefault default_terminal;
-        "application/pdf" = default_document_viewer;
-        "image/png" = default_image_viewer;
-        "image/jpeg" = default_image_viewer;
-      };
-  };
+  # Handled by KDE
+  # xdg.mimeApps = {
+  #   enable = true;
+  #   defaultApplications =
+  #     let
+  #       default_browser = "google-chrome.desktop";
+  #       default_terminal = "footclient.desktop";
+  #       default_image_viewer = "gwenview.desktop";
+  #       default_document_viewer = "okular.desktop";
+  #     in
+  #     {
+  #       "text/html" = default_browser;
+  #       "x-scheme-handler/http" = default_browser;
+  #       "x-scheme-handler/https" = default_browser;
+  #       "x-scheme-handler/about" = default_browser;
+  #       "x-scheme-handler/unknown" = default_browser;
+  #       "x-scheme-handler/terminal" = lib.mkDefault default_terminal;
+  #       "application/pdf" = default_document_viewer;
+  #       "image/png" = default_image_viewer;
+  #       "image/jpeg" = default_image_viewer;
+  #     };
+  # };
 
-  xdg.configFile."gtk-3.0/bookmarks".text =
-    let
-      home = config.home.homeDirectory;
-    in
-    ''
-      file://${home}/dev
-      file://${home}/Notes
-      file://${home}/Downloads
-      file://${home}/Documents
-      file://${home}/Pictures
-    '';
+  # Handled by KDE
+  # xdg.configFile."gtk-3.0/bookmarks".text =
+  #   let
+  #     home = config.home.homeDirectory;
+  #   in
+  #   ''
+  #     file://${home}/dev
+  #     file://${home}/Notes
+  #     file://${home}/Downloads
+  #     file://${home}/Documents
+  #     file://${home}/Pictures
+  #   '';
 
   home.stateVersion = "24.11"; # Please read the comment before changing.
 }

@@ -7,7 +7,7 @@
       chromium.enable = false;
     };
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-light.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
 
     # Fonts
     fonts =
