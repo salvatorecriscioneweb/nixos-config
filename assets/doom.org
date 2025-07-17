@@ -544,8 +544,6 @@ Now setup
       ;; Don't restore the wconf after quitting magit, it's jarring
       magit-inhibit-save-previous-winconf t
       evil-collection-magit-want-horizontal-movement t
-      ;; TODO: Add GPG Key
-      ;; magit-openpgp-default-signing-key "038C47F78E7FF08E"
       transient-values '((magit-rebase "--autosquash" "--autostash")
                          (magit-pull "--rebase" "--autostash")
                          (magit-revert "--autostash")))
