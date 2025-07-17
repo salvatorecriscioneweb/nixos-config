@@ -63,7 +63,7 @@ in
   };
 
   # TODO: Check if breaks too much stuff
-  environment.memoryAllocator.provider = "graphene-hardened-light";
+  # environment.memoryAllocator.provider = "graphene-hardened-light";
   services.dbus.apparmor = l.mkDefault "enabled";
 
   zramSwap.enable = l.mkDefault true;

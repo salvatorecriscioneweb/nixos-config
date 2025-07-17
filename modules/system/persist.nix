@@ -38,18 +38,28 @@
 
         # Locals
         ".local/share/warp"
-        ".local/share/kwalletd"
+        ".local/share/keyrings"
         ".local/share/direnv"
 
         # Thunderbird
         ".cache/thunderbird"
 
         # Config
-        ".config"
+        # ".config"
+        ".config/emacs"
+        ".config/doom"
+        ".config/Slack"
+        ".config/gnome-boxes"
+        ".config/spotify"
+        ".cache/spotify"
+        ".config/BraveSoftware"
+        ".config/google-chrome"
         ".local/share/doom"
       ];
       files = [
         ".config/gh/hosts.yml"
+        # KDE
+        # ".config/mimeapps.list"
       ];
     };
   };

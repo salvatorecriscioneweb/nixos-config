@@ -7,7 +7,8 @@
       chromium.enable = false;
     };
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-light.yaml";
+    base16Scheme = ../../assets/base16-oxocarbon.yaml;
 
     # Fonts
     fonts =
@@ -40,9 +41,9 @@
         };
 
         sizes = {
-          desktop = 11;
-          applications = 11;
-          terminal = 13;
+          desktop = 12;
+          applications = 12;
+          terminal = 15;
         };
       };
   };

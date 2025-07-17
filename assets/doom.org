@@ -1,6 +1,5 @@
 #+title: Doom Config
 #+author: Salvatore Criscione
-#+PROPERTY: header-args :tangle yes :cache yes :results silent :padline no
 
 
 * Config
@@ -13,7 +12,7 @@ Set the name
 
 Remove the Lines
 #+begin_src emacs-lisp
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type nil)
 #+end_src
 
 Set the ORG Directory
@@ -30,6 +29,14 @@ Setup the Auth Info, for now disabled
 ** Better Defaults
 Setting some better defaults
 #+begin_src emacs-lisp
+(prefer-coding-system       'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-language-environment   'utf-8)
+
+(global-font-lock-mode 0) ; Colors are bloat
+
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
  window-combination-resize t                      ; take new window space from all other windows (not just current)
@@ -41,15 +48,26 @@ Setting some better defaults
       truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
       password-cache-expiry nil                   ; I can trust my computers ... can't I?
       ;; scroll-preserve-screen-position 'always     ; Don't have `point' jump around
-      scroll-margin 2                             ; It's nice to maintain a little margin
+      ;; scroll-margin 2                             ; It's nice to maintain a little margin
       display-time-default-load-average nil)      ; I don't think I've ever found this useful
 
 (display-time-mode 1)                             ; Enable time in the mode-line
 (global-subword-mode 1)                           ; Iterate through CamelCase words
+
+(setq-default
+      delete-by-moving-to-trash t                      ; Delete files to trash
+      window-combination-resize t                      ; take new window space from all other windows (not just current)
+      x-stretch-cursor t)
 #+end_src
 
 #+begin_src emacs-lisp
 (setq show-trailing-whitespace t)
+(setq evil-ex-substitute-global t)
+#+end_src
+
+Disable the window bar
+#+begin_src emacs-lisp
+(add-to-list 'default-frame-alist '(undecorated . t))
 #+end_src
 ** Windows
 Some improvements for the window, specifically allowing to choose which window i do want
@@ -93,7 +111,8 @@ To start the initial setup just use
        ;;indent-guides     ; highlighted indent columns
        ligatures         ; ligatures and symbols to make your code pretty again
        ;;minimap           ; show a map of the code on the side
-       modeline          ; snazzy, Atom-inspired modeline, plus API
+       (modeline          ; snazzy, Atom-inspired modeline, plus API
+        +light)
        nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
@@ -106,7 +125,7 @@ To start the initial setup just use
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
-       zen               ; distraction-free coding or writing
+       ;; zen               ; distraction-free coding or writing
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
@@ -119,7 +138,7 @@ To start the initial setup just use
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
-       snippets          ; my elves. They type so I don't have to
+       ;;snippets          ; my elves. They type so I don't have to
        ;;word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
@@ -127,7 +146,8 @@ To start the initial setup just use
        electric          ; smarter, keyword-based electric-indent
        ;;eww               ; the internet is gross
        ;;ibuffer           ; interactive buffer management
-       undo              ; persistent, smarter undo for your inevitable mistakes
+       (undo              ; persistent, smarter undo for your inevitable mistakes
+        +tree)
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
@@ -171,7 +191,7 @@ To start the initial setup just use
        :lang
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
-       ;;(cc +lsp)         ; C > C++ == 1
+       ;;(cc +lsp)          ; C > C++ == 1
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -319,8 +339,8 @@ Setup a better Keybind for the Dashboard
 Setup Fonts
 
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "CaskaydiaMono Nerd Font" :size 16 :weight 'light)
-      doom-big-font (font-spec :family "CaskaydiaMono Nerd Font" :size 24 :weight 'light)
+(setq doom-font (font-spec :family "CaskaydiaMono Nerd Font" :size 20 :weight 'light)
+      doom-big-font (font-spec :family "CaskaydiaMono Nerd Font" :size 28 :weight 'light)
       doom-variable-pitch-font (font-spec :family "Inter" :size 20)
       doom-emoji-font (font-spec :family "Noto Color Emoji")
       doom-serif-font (font-spec :family "Inter" :size 18 :weight 'light))
@@ -346,7 +366,7 @@ Improved Keybinds
 *** Theme
 Set the theme
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'doom-badger)
+(setq doom-theme 'doom-one)
 #+END_SRC
 
 *** Customization
@@ -355,6 +375,39 @@ Set the theme
   (setq doom-modeline-buffer-file-name-style 'relative-from-project))
 #+end_src
 
+*** LLMs
+Set as default GPT4.1 for Copilot GPTel
+#+begin_src emacs-lisp
+(use-package! gptel
+  :config
+  (setq gptel-model 'gpt-4.1
+        gptel-backend (gptel-make-gh-copilot "Copilot")))
+#+end_src
+*** LSP
+Add to the list of ignored directories deps
+#+begin_src emacs-lisp
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]deps"))
+#+end_src
+
+
+And avoid the automatic download of LSP, as i handle using Nixos config
+#+begin_src emacs-lisp
+(after! lsp-mode
+  (setq lsp-enable-symbol-highlighting nil
+        lsp-elixir-server-command "elixir-ls"
+        ;; If an LSP server isn't present when I start a prog-mode buffer, you
+        ;; don't need to tell me. I know. On some machines I don't care to have
+        ;; a whole development environment for some ecosystems.
+        lsp-enable-suggest-server-download nil))
+#+end_src
+
+
+#+begin_src emacs-lisp
+(after! lsp-ui
+  (setq lsp-ui-sideline-enable nil  ; no more useful than flycheck
+        lsp-ui-doc-enable nil))     ; redundant with K
+#+end_src
 * Packages
 ** Init
 #+begin_src emacs-lisp :tangle packages.el
@@ -466,4 +519,34 @@ Now setup
 ** Treemacs
 #+begin_src emacs-lisp
 (add-hook 'treemacs-mode #'treemacs-follow-mode)
+#+end_src
+
+** Apheleia ( Format )
+#+begin_src emacs-lisp
+(use-package! apheleia
+  :config
+  (setf (alist-get 'biome apheleia-formatters)
+        '("biome" "format" "--stdin-file-path" filepath "--write"))
+
+  ;; Associate Biome with JavaScript and TypeScript modes
+  (setf (alist-get 'js-mode apheleia-mode-alist) 'biome)
+  (setf (alist-get 'js2-mode apheleia-mode-alist) 'biome)
+  (setf (alist-get 'typescript-mode apheleia-mode-alist) 'biome)
+  (setf (alist-get 'css-mode apheleia-mode-alist) 'biome)
+  (setf (alist-get 'web-mode apheleia-mode-alist) 'biome))
+#+end_src
+
+** Magit
+#+begin_src emacs-lisp
+(setq magit-show-long-lines-warning nil
+      magit-repository-directories '(("~/dev" . 2))
+      magit-save-repository-buffers nil
+      ;; Don't restore the wconf after quitting magit, it's jarring
+      magit-inhibit-save-previous-winconf t
+      evil-collection-magit-want-horizontal-movement t
+      ;; TODO: Add GPG Key
+      ;; magit-openpgp-default-signing-key "038C47F78E7FF08E"
+      transient-values '((magit-rebase "--autosquash" "--autostash")
+                         (magit-pull "--rebase" "--autostash")
+                         (magit-revert "--autostash")))
 #+end_src

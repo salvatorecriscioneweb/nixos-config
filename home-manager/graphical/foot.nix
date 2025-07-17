@@ -2,16 +2,13 @@
 {
   programs.foot = {
     enable = true;
-    # server.enable = true;
+    server.enable = true;
     settings = {
       main = {
-        shell = "${pkgs.fish}/bin/fish";
+        shell = "${pkgs.fish}/bin/fish --login";
         workers = 14;
         pad = "10x10 center";
-        line-height = 16;
-      };
-      colors = {
-        alpha = lib.mkForce 0.95;
+        line-height = 18;
       };
       scrollback = {
         lines = 10000;

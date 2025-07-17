@@ -3,6 +3,7 @@
   programs = {
     fish.enable = true;
     thunar.enable = true;
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -12,6 +13,8 @@
         max-cache-ttl = 120;
       };
     };
+
+    seahorse.enable = true;
 
     light.enable = true;
 

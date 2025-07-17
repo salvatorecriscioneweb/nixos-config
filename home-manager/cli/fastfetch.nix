@@ -17,10 +17,15 @@
       modules = [
         "colors"
         "break"
+        "host"
         "os"
+        "editor"
+        "separator"
         "kernel"
         "shell"
         "terminal"
+        "separator"
+        "cpu"
         "memory"
       ];
     };

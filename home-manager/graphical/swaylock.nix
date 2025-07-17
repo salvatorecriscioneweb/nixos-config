@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       indicator-idle-visible = true;
-      image = "~/.config/wallpapers/wallhaven-45kjv5-blurred.jpg";
+      image = "~/.config/wallpapers/wallpaper-blurred.jpg";
     };
   };
 }
