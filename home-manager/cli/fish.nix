@@ -12,7 +12,7 @@
       ls = "eza";
       update = "sudo nixos-rebuild switch";
       phx = "iex -S mix phx.server";
-      ee = "emacs";
+      ee = "emacsclient -nw -c";
       keyboard_1 = "echo 1 > /sys/class/leds/tpacpi::kbd_backlight/brightness";
       keyboard_2 = "echo 2 > /sys/class/leds/tpacpi::kbd_backlight/brightness";
     };

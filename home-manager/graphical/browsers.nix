@@ -4,5 +4,6 @@
     chromium
     brave
     google-chrome
+    firefox
   ];
 }

@@ -7,11 +7,11 @@
       mainBar = {
         height = 32;
         spacing = 8;
-        position = "bottom";
+        position = "top";
         layer = "top";
         margin-left = 16;
         margin-right = 16;
-        margin-bottom = 8;
+        margin-top = 8;
 
         modules-left = [
           "mpris"

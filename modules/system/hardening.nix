@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 let
   l = lib // builtins;
 in
@@ -100,6 +100,17 @@ in
     apparmor = {
       enable = l.mkDefault true;
       killUnconfinedConfinables = l.mkDefault true;
+      packages = with pkgs; [
+        apparmor-profiles
+        # roddhjav-apparmor-rules
+      ];
+      policies = {
+        firefox.path = "${pkgs.apparmor-profiles}/etc/apparmor.d/firefox";
+        # adb = {
+        #   state = "complain";
+        #   path = "${pkgs.roddhjav-apparmor-rules}/etc/apparmor.d/profiles-a-f/adb";
+        # };
+      };
     };
 
     sudo = {
