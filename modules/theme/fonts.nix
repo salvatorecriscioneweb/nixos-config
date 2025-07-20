@@ -15,6 +15,7 @@
 
       # -- [ Nerd Fonts ] --
       nerd-fonts.caskaydia-mono
+      nerd-fonts.profont
     ];
   };
 }

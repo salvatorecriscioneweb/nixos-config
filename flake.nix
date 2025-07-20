@@ -3,13 +3,12 @@
 
   inputs = {
     # --- [ Nix Packages ] ---
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     # --- [ Home Manager ] ---
     home-manager = {
-      # url = "github:nix-community/home-manager";
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -38,19 +37,17 @@
 
     # --- [ Make stuff cool ] ---
     stylix = {
-      url = "github:nix-community/stylix/release-25.05";
-
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.home-manager.follows = "home-manager";
     };
 
-    # --- [ System Hardening ] ---
-    # Removed as breaks the root wipe FS
-    # TODO: Check if i can fix it
-    # nix-mineral = {
-    #   url = "github:cynicsketch/nix-mineral"; # Refers to a specific commit and follows that until you change it
-    #   flake = false;
-    # };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
+      # url = "github:nix-community/nixvim/nixos-25.05";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -63,11 +60,6 @@
     {
       nixosConfigurations = {
         luna = mkSystem "luna" {
-          system = "x86_64-linux";
-        };
-
-        # TODO: Finalize this
-        luna-vm = mkSystem "luna" {
           system = "x86_64-linux";
         };
       };

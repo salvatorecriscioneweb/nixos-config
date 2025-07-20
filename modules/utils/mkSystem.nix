@@ -24,14 +24,6 @@ systemFunc {
         agenix.packages.${system}.default
       ];
 
-      nixpkgs.overlays = [
-        (final: prev: {
-          # gh CLI on stable has bugs.
-          gh = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.gh;
-
-        })
-      ];
-
       imports = [
         ./secrets.nix
       ];
@@ -43,7 +35,9 @@ systemFunc {
         useGlobalPkgs = true;
         useUserPackages = true;
         backupFileExtension = "backup";
-        # sharedModules = [ ];
+        sharedModules = [
+          inputs.nixvim.homeModules.nixvim
+        ];
         users.ssalva = import homeConfig;
       };
     }

@@ -84,6 +84,8 @@ in
       "compress=zstd"
       "noatime"
       "noexec"
+      "nodev"
+      "nosuid"
     ];
   };
 
@@ -105,8 +107,21 @@ in
       "subvol=persist"
       "compress=zstd"
       "noatime"
-      # TODO: Find a solution
-      # "noexec"
+      "noexec"
+      "nodev"
+      "nosuid"
+    ];
+  };
+
+  fileSystems."/persist/home/ssalva/.config/emacs" = {
+    device = "/persist/home/ssalva/.config/emacs";
+    fsType = "none";
+    options = [
+      "defaults"
+      "bind"
+      "user"
+      "exec"
+      "nofail"
     ];
   };
 
@@ -129,6 +144,8 @@ in
       "compress=zstd"
       "noatime"
       "noexec"
+      "nosuid"
+      "nodev"
     ];
   };
 

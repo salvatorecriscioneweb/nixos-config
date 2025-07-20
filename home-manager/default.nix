@@ -47,7 +47,11 @@
     chafa
     age
     wl-clipboard
+    # Image Viewer
     imv
+    # Video Viewer
+    mpv
+    # Audio Ctl
     playerctl
 
     # -- [ VMs ] --

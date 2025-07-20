@@ -134,7 +134,7 @@ in
       spawn = [
         "${pkgs.blueman}/bin/blueman-applet"
         "\"${pkgs.light}/bin/light -S 50\""
-        "\"sleep 1 && ${pkgs.swaybg}/bin/swaybg -i ~/.config/wallpapers/wallpaper.jpg\""
+        "\"sleep 1 && ${pkgs.swaybg}/bin/swaybg -i ~/.config/wallpapers/wallhaven-gw8593.jpg\""
         "\"sleep 2 && ${pkgs.networkmanagerapplet}/bin/nm-applet\""
         "\"sleep 2 && ${pkgs.foot}/bin/foot --server\""
       ];

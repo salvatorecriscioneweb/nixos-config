@@ -7,16 +7,16 @@
       chromium.enable = false;
     };
 
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-light.yaml";
-    base16Scheme = ../../assets/base16-oxocarbon.yaml;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/one-light.yaml";
+    # base16Scheme = ../../assets/base16-oxocarbon.yaml;
 
     # Fonts
     fonts =
       let
-        p = pkgs.nerd-fonts.caskaydia-mono;
+        p = pkgs.nerd-fonts.profont;
         p_norm = pkgs.inter;
 
-        nmono = "CaskaydiaMono Nerd Font";
+        nmono = "ProFontWindows Nerd Font";
         nnorm = "Inter";
       in
       {
@@ -43,7 +43,7 @@
         sizes = {
           desktop = 12;
           applications = 12;
-          terminal = 15;
+          terminal = 18;
         };
       };
   };

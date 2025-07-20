@@ -12,7 +12,7 @@
     };
 
     variables = {
-      EDITOR = "emacsclient -nw -c"; # Set default EDITOR
+      EDITOR = "emacs -nw"; # Set default EDITOR
       PATH = [ "/persist/home/ssalva/.config/emacs/bin" ];
     };
 
