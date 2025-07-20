@@ -50,7 +50,7 @@
     # Image Viewer
     imv
     # Video Viewer
-    mpv
+    # mpv
     # Audio Ctl
     playerctl
 

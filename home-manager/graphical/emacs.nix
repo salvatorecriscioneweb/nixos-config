@@ -42,7 +42,8 @@ in
     nodejs_20
 
     # Go
-    gopls
+    # go
+    # gopls
     # gore
 
     # Nix
