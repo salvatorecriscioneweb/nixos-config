@@ -1,8 +1,9 @@
 {
-   programs.git = {
+  programs.git = {
     enable = true;
     userName = "Salvatore Criscione";
-    userEmail = "not.salvatore@gmail.com";
+    # Deter potential scammers
+    userEmail = "not.salvatore" + "@" + "gmail" + "." + "com";
 
     extraConfig = {
       github.user = "salvatorecriscioneweb";
@@ -10,9 +11,37 @@
       init.defaultBranch = "main";
     };
     # signing = {
-    #   key = "038C47F78E7FF08E";
+    #   format = "openpgp";
     #   signByDefault = true;
     # };
-  };
 
+    ignores = [
+      # system residue
+      ".cache/"
+      ".DS_Store"
+      ".Trashes"
+      ".Trash-*"
+      "*.bak"
+      "*.swp"
+      "*.swo"
+      "*.elc"
+      ".~lock*"
+
+      # build residue
+      "tmp/"
+      "target/"
+      "result"
+      "result-*"
+      "*.exe"
+      "*.exe~"
+      "*.dll"
+      "*.so"
+      "*.dylib"
+
+      # dependencies
+      ".direnv/"
+      "node_modules"
+      "vendor"
+    ];
+  };
 }

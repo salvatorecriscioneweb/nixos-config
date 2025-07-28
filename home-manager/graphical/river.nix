@@ -5,8 +5,8 @@
   ...
 }:
 let
-  terminal_client = "${pkgs.foot}/bin/footclient";
-  terminal = "${pkgs.foot}/bin/foot";
+  terminal_client = "${pkgs.kitty}/bin/kitty";
+  terminal = "${pkgs.kitty}/bin/kitty";
   file_manager = "${pkgs.xfce.thunar}/bin/thunar";
   launcher = "\"${pkgs.rofi-wayland}/bin/rofi -show drun\"";
 
@@ -20,11 +20,6 @@ in
     systemd = {
       enable = true;
       extraCommands = [
-        # Foot we start using spawn
-        "systemctl --user stop foot-server"
-        # Emacs
-        "systemctl --user stop emacs"
-        "systemctl --user start emacs"
         # XDG
         "systemctl --user stop xdg-desktop-portal"
         "systemctl --user start xdg-desktop-portal"
@@ -90,12 +85,12 @@ in
       # Set the default layout generator to be rivertile and start it.
       # River will send the process group of the init executable SIGTERM on exit.
       riverctl default-layout rivertile
-      rivertile -view-padding 8 -outer-padding 8 -main-ratio 0.58 &
+      rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.68 &
     '';
     settings = {
       border-width = 2;
-      border-color-focused = lib.mkForce "0x${config.lib.stylix.colors.base06}";
-      border-color-unfocused = lib.mkForce "0x${config.lib.stylix.colors.base08}";
+      border-color-focused = lib.mkForce "0x${config.lib.stylix.colors.base08}";
+      border-color-unfocused = lib.mkForce "0x${config.lib.stylix.colors.base06}";
       declare-mode = [
         "locked"
         "normal"
@@ -111,12 +106,12 @@ in
             "L".send-layout-cmd.rivertile = "\"main-ratio -0.05\"";
             "H".send-layout-cmd.rivertile = "\"main-ratio +0.05\"";
             "Return".spawn = terminal_client;
-            "E".spawn = "\"${emacs_package}/bin/emacsclient -c\"";
             "F".spawn = "${file_manager}";
             "X".spawn = "${launcher}";
             "D".focus-view = "next";
             "A".focus-view = "previous";
             "Space" = "toggle-float";
+            "P".spawn = "\"cliphist list | rofi -dmenu | cliphist decode | wl-copy\"";
             "Q" = "close";
           };
           "Super+Shift" = {
@@ -134,9 +129,8 @@ in
       spawn = [
         "${pkgs.blueman}/bin/blueman-applet"
         "\"${pkgs.light}/bin/light -S 50\""
-        "\"sleep 1 && ${pkgs.swaybg}/bin/swaybg -i ~/.config/wallpapers/wallhaven-gw8593.jpg\""
+        "\"sleep 1 && ${pkgs.swaybg}/bin/swaybg -c 0089da\""
         "\"sleep 2 && ${pkgs.networkmanagerapplet}/bin/nm-applet\""
-        "\"sleep 2 && ${pkgs.foot}/bin/foot --server\""
       ];
     };
   };

@@ -27,7 +27,7 @@
           always = true;
         }
         {
-          command = "${pkgs.swaybg}/bin/swaybg -i ~/.config/wallpapers/wallhaven-45kjv5.jpg";
+          command = "${pkgs.swaybg}/bin/swaybg -c 0089da";
           always = true;
         }
       ];

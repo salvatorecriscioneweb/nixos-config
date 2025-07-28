@@ -9,6 +9,7 @@
       NIXOS_OZONE_WL = 1;
       MOZ_ENABLE_WAYLAND = 1;
       ELECTRON_OZONE_PLATFORM_HINT = 1;
+      DO_NOT_TRACK = 1;
     };
 
     variables = {

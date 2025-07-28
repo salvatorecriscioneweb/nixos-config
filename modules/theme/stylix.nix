@@ -7,31 +7,25 @@
       chromium.enable = false;
     };
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/one-light.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal-khold.yaml";
     # base16Scheme = ../../assets/base16-oxocarbon.yaml;
 
     # Fonts
     fonts =
       let
-        p = pkgs.nerd-fonts.profont;
-        p_norm = pkgs.inter;
-
-        nmono = "ProFontWindows Nerd Font";
+        nmono = "LiterationMono Nerd Font";
         nnorm = "Inter";
       in
       {
         serif = {
-          package = p_norm;
           name = nnorm;
         };
 
         sansSerif = {
-          package = p_norm;
           name = nnorm;
         };
 
         monospace = {
-          package = p;
           name = nmono;
         };
 
@@ -41,9 +35,9 @@
         };
 
         sizes = {
-          desktop = 12;
-          applications = 12;
-          terminal = 18;
+          desktop = 14;
+          applications = 14;
+          terminal = 16;
         };
       };
   };

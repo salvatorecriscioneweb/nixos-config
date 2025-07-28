@@ -8,18 +8,20 @@ let
   boot_p = "E6BB-8D1E";
 in
 {
-  boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "thunderbolt"
-    "nvme"
-    "usb_storage"
-    "sd_mod"
-    "sr_mod"
-  ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "btrfs" ];
+  boot = {
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "thunderbolt"
+      "nvme"
+      "usb_storage"
+      "sd_mod"
+      "sr_mod"
+    ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+    supportedFilesystems = [ "btrfs" ];
+  };
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     mkdir /btrfs_tmp
@@ -110,6 +112,30 @@ in
       "noexec"
       "nodev"
       "nosuid"
+    ];
+  };
+
+  fileSystems."/persist/home/ssalva/.mix" = {
+    device = "/persist/home/ssalva/.mix";
+    fsType = "none";
+    options = [
+      "defaults"
+      "bind"
+      "user"
+      "exec"
+      "nofail"
+    ];
+  };
+
+  fileSystems."/persist/home/ssalva/dev" = {
+    device = "/persist/home/ssalva/dev";
+    fsType = "none";
+    options = [
+      "defaults"
+      "bind"
+      "user"
+      "exec"
+      "nofail"
     ];
   };
 

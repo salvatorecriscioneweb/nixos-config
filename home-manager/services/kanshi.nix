@@ -4,11 +4,28 @@
     settings = [
       {
         profile = {
+          name = "Bombay_Desk";
+          outputs = [
+            {
+              criteria = "DP-3";
+              mode = "2560x1600@75Hz";
+              scale = 1.15;
+            }
+            {
+              criteria = "eDP-1";
+              status = "disable";
+            }
+          ];
+        };
+      }
+      {
+        profile = {
           name = "Undocked";
           outputs = [
             {
               criteria = "eDP-1";
               adaptiveSync = true;
+              status = "enable";
             }
           ];
         };
@@ -36,8 +53,7 @@
           outputs = [
             {
               criteria = "eDP-1";
-              position = "400,1440";
-              adaptiveSync = true;
+              status = "disable";
             }
             {
               criteria = "Lenovo Group Limited LEN P27h-10 0x30585944";

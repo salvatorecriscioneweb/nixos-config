@@ -17,14 +17,6 @@ in
         # for many vulnerabilities and is disabled on Android + ChromeOS.
         "kernel.io_uring_disabled" = l.mkDefault "2";
 
-        # Disable ip forwarding to reduce attack surface. May be needed for
-        # VM networking.
-        "net.ipv4.ip_forward" = l.mkDefault "0";
-        "net.ipv4.conf.all.forwarding" = l.mkOverride 900 "0";
-        "net.ipv4.conf.default.forwarding" = l.mkDefault "0";
-        "net.ipv6.conf.all.forwarding" = l.mkDefault "0";
-        "net.ipv6.conf.default.forwarding" = l.mkDefault "0";
-
         # Disable ICMP redirects to prevent some MITM attacks
         # See https://askubuntu.com/questions/118273/what-are-icmp-redirects-and-should-they-be-blocked
         "net.ipv4.conf.all.accept_redirects" = l.mkOverride 900 "0";
@@ -66,12 +58,12 @@ in
   # environment.memoryAllocator.provider = "graphene-hardened-light";
   services.dbus.apparmor = l.mkDefault "enabled";
 
-  zramSwap.enable = l.mkDefault true;
+  systemd.enableEmergencyMode = false;
 
   services = {
     openssh.settings.PermitRootLogin = l.mkForce "no";
     # DNS connections will fail if not using a DNS server supporting DNSSEC.
-    resolved.dnssec = l.mkDefault "true";
+    # resolved.dnssec = l.mkDefault "true";
   };
 
   # Don't store coredumps from systemd-coredump.
@@ -86,10 +78,10 @@ in
       enable = l.mkDefault true;
     };
     networkmanager = {
-      ethernet.macAddress = l.mkDefault "random";
+      # ethernet.macAddress = l.mkDefault "random";
       wifi = {
-        macAddress = l.mkDefault "random";
-        scanRandMacAddress = l.mkDefault true;
+        # macAddress = l.mkDefault "random";
+        # scanRandMacAddress = l.mkDefault true;
       };
       # Enable IPv6 privacy extensions in NetworkManager.
       connectionConfig."ipv6.ip6-privacy" = l.mkDefault 2;

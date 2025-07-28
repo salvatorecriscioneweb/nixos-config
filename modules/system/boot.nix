@@ -7,21 +7,16 @@
     packages = with pkgs; [ terminus_font ];
   };
 
-  services = {
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.greetd}/bin/agreety --cmd river";
-        };
-      };
-    };
-  };
+  zramSwap.enable = lib.mkDefault true;
 
   boot = {
     loader = {
       timeout = 0;
-      systemd-boot.enable = lib.mkForce false;
+      systemd-boot = {
+        enable = lib.mkForce false;
+        configurationLimit = 15; # prevent "too many" configuration from showing up on the boot menu
+      };
+
       # systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
@@ -40,5 +35,10 @@
       "vm.watermark_scale_factor" = 125;
       "vm.page-cluster" = 0;
     };
+
+    kernelParams = [
+      # allow systemd to set and save the backlight state
+      "acpi_backlight=native"
+    ];
   };
 }

@@ -1,6 +1,12 @@
 { pkgs, ... }:
 {
   fonts = {
+    fontconfig = {
+      enable = true;
+      hinting.enable = true;
+      antialias = true;
+    };
+
     fontDir = {
       enable = true;
       decompressFonts = true;
@@ -14,8 +20,10 @@
       nerd-fonts.symbols-only
 
       # -- [ Nerd Fonts ] --
-      nerd-fonts.caskaydia-mono
-      nerd-fonts.profont
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.liberation
+      nerd-fonts.tinos
+      nerd-fonts.proggy-clean-tt
     ];
   };
 }

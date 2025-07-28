@@ -9,8 +9,15 @@
     ];
   };
 
-  programs.river.enable = true;
-  programs.river.xwayland.enable = false;
-
   programs.labwc.enable = true;
+  services = {
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.greetd}/bin/agreety --cmd \"labwc\"";
+        };
+      };
+    };
+  };
 }

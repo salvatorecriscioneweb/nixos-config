@@ -130,7 +130,7 @@ To start the initial setup just use
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup +all +defaults)   ; tame sudden yet inevitable temporary windows
-       ;;smooth-scroll     ; So smooth you won't believe it's not butter
+       smooth-scroll     ; So smooth you won't believe it's not butter
        ;;tabs              ; a tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
@@ -199,7 +199,7 @@ To start the initial setup just use
 
        :os
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
-       ;; tty               ; improve the terminal Emacs experience
+       ;;tty               ; improve the terminal Emacs experience
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -352,8 +352,7 @@ Improve the keybinds
 
 #+begin_src emacs-lisp
 (after! org
-  (setq org-directory "~/nc/Org/"
-        org-default-notes-file (expand-file-name "notes.org" org-directory)
+  (setq org-default-notes-file (expand-file-name "notes.org" org-directory)
         org-ellipsis " ▼ "
         org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
         org-superstar-itembullet-alist '((?+ . ?➤) (?- . ?✦)) ; changes +/- symbols in item lists
@@ -433,9 +432,9 @@ Dired is the file manager within Emacs.  Below, I setup keybindings for image pr
 Setup Fonts
 
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "ProFontWindows Nerd Font" :size 24)
-      doom-big-font (font-spec :family "ProFontWindows Nerd Font" :size 38)
-      doom-variable-pitch-font (font-spec :family "Inter" :size 20 :weight 'light)
+(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 22)
+      doom-big-font (font-spec :family "SauceCodePro Nerd Font" :size 28)
+      doom-variable-pitch-font (font-spec :family "Inter" :size 18 :weight 'light)
       doom-emoji-font (font-spec :family "Noto Color Emoji")
       doom-serif-font (font-spec :family "Inter" :size 18 :weight 'light))
 #+end_src
@@ -460,7 +459,7 @@ Improved Keybinds
 *** Theme
 Set the theme
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'doom-one-light)
+(setq doom-theme 'modus-vivendi)
 #+END_SRC
 
 *** Customization

@@ -9,9 +9,9 @@
         spacing = 8;
         position = "top";
         layer = "top";
-        margin-left = 16;
-        margin-right = 16;
-        margin-top = 8;
+        margin-left = 0;
+        margin-right = 0;
+        margin-top = 0;
 
         modules-left = [
           "mpris"

@@ -35,9 +35,7 @@ systemFunc {
         useGlobalPkgs = true;
         useUserPackages = true;
         backupFileExtension = "backup";
-        sharedModules = [
-          inputs.nixvim.homeModules.nixvim
-        ];
+        # sharedModules = [ ];
         users.ssalva = import homeConfig;
       };
     }

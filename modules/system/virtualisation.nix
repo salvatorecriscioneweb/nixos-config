@@ -1,16 +1,18 @@
 { pkgs, ... }:
 {
-  virtualisation.containers.enable = true;
+  programs.virt-manager.enable = true;
+
+  users.groups.libvirtd.members = [ "ssalva" ];
+
   virtualisation = {
-    podman = {
+    libvirtd = {
       enable = true;
-
-      # Create a `docker` alias for podman, to use it as a drop-in replacement
-      dockerCompat = true;
-
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings.dns_enabled = true;
+      extraConfig = ''
+        firewall_backend=iptables
+      '';
     };
+
+    spiceUSBRedirection.enable = true;
   };
 
   environment = {

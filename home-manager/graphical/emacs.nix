@@ -12,6 +12,7 @@ in
     coreutils
     # libtool
     unzip
+    gcc
     clang-tools
     gnutls
 
@@ -57,5 +58,4 @@ in
   ];
 
   programs.emacs = my_emacs;
-  services.emacs = my_emacs;
 }

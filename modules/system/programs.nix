@@ -2,20 +2,17 @@
 {
   programs = {
     fish.enable = true;
-    thunar.enable = true;
 
-    gnupg.agent = {
+    thunar = {
       enable = true;
-      enableSSHSupport = true;
-
-      settings = {
-        default-cache-ttl = 60;
-        max-cache-ttl = 120;
-      };
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-media-tags-plugin
+        thunar-volman
+      ];
     };
 
     seahorse.enable = true;
-
     light.enable = true;
 
     adb.enable = true;
@@ -23,16 +20,13 @@
     nix-index-database = {
       comma.enable = true;
     };
+
+    git.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
-    killall
-
     xfce.thunar-archive-plugin
     xfce.catfish
-
-    # Git
-    git
 
     # Secure Boot
     sbctl

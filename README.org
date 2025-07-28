@@ -1,13 +1,7 @@
 #+title: Lunar Systems
 
 * Preface
-This documentation is related to my *personal* Nix-based system configuration, designed with three core principles:
-
-- *Minimalism*: Only essential components are included, reducing maintenance overhead and complexity. S*ckless software is something which fascinate me.
-- *Wayland-native*: Built around modern display protocols for better security and performance, X11 is stripped out. LabWC + XFCE Panel is used mostly.
-- *Security-focused*: Incorporating paranoid-level security practices by default.
-
-The following pages detail how these components work together to create a coherent, maintainable, and secure computing environment using the declarative power of Nix.
+This documentation is related to my *personal* Nix-based system configuration.
 
 All configuration files and documentation are version controlled, and i implement the [[https://grahamc.com/blog/erase-your-darlings/][Erase your darlings]] approach, so yes the entire FS is wiped each reboot. [[https://github.com/salvatorecriscioneweb/nixos-config/blob/main/host/luna/disk.nix#L24][Including home directory]].
 
@@ -17,7 +11,7 @@ All configuration files and documentation are version controlled, and i implemen
 [[https://raw.githubusercontent.com/salvatorecriscioneweb/nixos-config/refs/heads/main/assets/preview_1.jpg]]
 
 
-Wallpaper from: [[https://wallhaven.cc/w/45kjv5][Wallhaven.cc]]
+Wallpaper from: [[https://wallhaven.cc/w/13d76w][Wallhaven.cc]]
 
 * NixOS Unstable
 

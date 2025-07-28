@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.tmux = {
     enable = true;
@@ -9,6 +10,9 @@
       setw -g monitor-activity on
       # Renumber windows on window close
       set -g renumber-windows on
+
+      set-option -g default-shell ${pkgs.fish}/bin/fish
+
       # split panes using | and -
       bind s split-window -h
       bind v split-window -v

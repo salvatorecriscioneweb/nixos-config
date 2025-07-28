@@ -9,7 +9,7 @@
     # --- [ Services ] ---
     ./services/kanshi.nix
     ./services/swayidle.nix
-    ./services/mako.nix
+    ./services/cliphist.nix
 
     # --- [ CLI ] ---
     ./cli/git.nix
@@ -30,17 +30,16 @@
     ./cli/tmux.nix
 
     # --- [ DE ] ---
-    ./graphical/river.nix
+    ./graphical/labwc.nix
 
     # --- [ Graphical ] ---
-    ./graphical/foot.nix
     ./graphical/emacs.nix
     ./graphical/rofi.nix
-    ./graphical/waybar.nix
+    # ./graphical/waybar.nix
     ./graphical/swaylock.nix
     ./graphical/browsers.nix
     ./graphical/zathura.nix
-    # ./graphical/kitty.nix
+    ./graphical/kitty.nix
   ];
 
   home.packages = with pkgs; [
@@ -48,14 +47,20 @@
     age
     wl-clipboard
     # Image Viewer
-    imv
+    xfce.ristretto
+    xfce.mousepad
+    xfce.xfce4-notifyd
+
     # Video Viewer
     # mpv
     # Audio Ctl
     playerctl
 
+    # Figma
+    # figma-linux
+
     # -- [ VMs ] --
-    #  gnome-boxes
+    gnome-boxes
 
     # -- [ Graphics ] --
     gimp3
@@ -66,6 +71,7 @@
     # -- [ Telegram ] --
     telegram-desktop
     zoom-us
+    blanket
 
     # -- [ Office ] --
     libreoffice
@@ -101,15 +107,6 @@
     };
   };
 
-  gtk = {
-    enable = true;
-
-    iconTheme = {
-      name = "Vimix-White";
-      package = pkgs.vimix-icon-theme;
-    };
-  };
-
   stylix.targets = {
     vencord.enable = false;
     blender.enable = false;
@@ -126,9 +123,8 @@
     defaultApplications =
       let
         default_browser = "google-chrome.desktop";
-        default_terminal = "footclient.desktop";
-        default_image_viewer = "imv.desktop";
-        default_document_viewer = "zathura.desktop";
+        default_terminal = "kitty.desktop";
+        default_image_viewer = "ristretto.desktop";
       in
       {
         "text/html" = default_browser;
@@ -137,9 +133,11 @@
         "x-scheme-handler/about" = default_browser;
         "x-scheme-handler/unknown" = default_browser;
         "x-scheme-handler/terminal" = lib.mkDefault default_terminal;
-        "application/pdf" = default_document_viewer;
         "image/png" = default_image_viewer;
         "image/jpeg" = default_image_viewer;
+        "image/jpg" = default_image_viewer;
+        "image/webp" = default_image_viewer;
+        "image/gif" = default_image_viewer;
       };
   };
 
@@ -149,6 +147,7 @@
     in
     ''
       file://${home}/dev
+      file://${home}/dev/personal
       file://${home}/Notes
       file://${home}/Downloads
       file://${home}/Documents

@@ -6,11 +6,15 @@
   nix = {
     package = pkgs.nixVersions.latest;
     optimise.automatic = true;
+
     gc = {
       automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 1w";
+      options = "--delete-older-than 3d";
     };
+
+    # disable usage of nix channels
+    channel.enable = false;
+
     settings = {
       auto-optimise-store = true;
       allowed-users = [ "@wheel" ];
@@ -20,6 +24,7 @@
         "flakes"
       ];
     };
+
     extraOptions = ''
       # Ensure we can still build when a binary cache is not accessible
       fallback = true

@@ -9,7 +9,7 @@
           left = 2;
         };
         width = 30;
-        type = "sixel";
+        type = "kitty";
       };
       display = {
         color = "blue";

@@ -7,12 +7,14 @@
     extraGroups = [
       "wheel"
       "video"
+      "docker"
       "libvirtd"
       "networkmanager"
       "network"
       "audio"
       "kvm"
       "adbusers"
+      "seat"
     ];
     createHome = true;
     description = "Salvatore Criscione";

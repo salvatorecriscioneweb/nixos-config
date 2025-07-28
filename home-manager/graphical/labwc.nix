@@ -1,9 +1,12 @@
 { pkgs, ... }:
 {
   home = {
+    packages = with pkgs; [
+      xfce.xfce4-panel
+    ];
     file = {
-      ".local/share/themes/Clia" = {
-        source = ../../assets/Clia;
+      ".local/share/themes/Bonzo" = {
+        source = ../../assets/Bonzo;
         recursive = true;
       };
     };
@@ -15,9 +18,8 @@
       "${pkgs.blueman}/bin/blueman-applet &"
       "${pkgs.xfce.xfce4-panel}/bin/xfce4-panel &"
       "${pkgs.light}/bin/light -S 50 &"
-      "${pkgs.swaybg}/bin/swaybg -i ~/.config/wallpapers/wallhaven-45kjv5.jpg &"
+      "${pkgs.swaybg}/bin/swaybg -i ~/.config/wallpapers/evilcorp.png &"
       "${pkgs.networkmanagerapplet}/bin/nm-applet &"
-      "${pkgs.waybar}/bin/waybar &"
     ];
     environment = [
       "XDG_CURRENT_DESKTOP=labwc:wlroots"
@@ -31,7 +33,6 @@
     systemd = {
       enable = true;
       extraCommands = [
-        "systemctl --user restart emacs"
         "systemctl --user restart xdg-desktop-portal"
         "systemctl --user restart pipewire"
         "systemctl --user restart kanshi"
@@ -41,7 +42,7 @@
     };
     rc = {
       theme = {
-        name = "Clia";
+        name = "Bonzo";
         cornerRadius = 0;
         font = {
           "@name" = "Inter";
@@ -127,7 +128,7 @@
             "@key" = "W-e";
             action = {
               "@name" = "Execute";
-              "@command" = "${pkgs.emacs-pgtk}/bin/emacsclient -c";
+              "@command" = "${pkgs.emacs-pgtk}/bin/emacs";
             };
           }
           {
@@ -222,7 +223,7 @@
             "@key" = "W-Return";
             action = {
               "@name" = "Execute";
-              "@command" = "${pkgs.foot}/bin/foot";
+              "@command" = "${pkgs.kitty}/bin/kitty";
             };
           }
           {
@@ -230,13 +231,6 @@
             action = {
               "@name" = "Execute";
               "@command" = "wl-capture-region";
-            };
-          }
-          {
-            "@key" = "W-S-Return";
-            action = {
-              "@name" = "Execute";
-              "@command" = "${pkgs.foot}/bin/foot";
             };
           }
           {
@@ -356,24 +350,10 @@
         menuId = "root-menu";
         items = [
           {
-            label = "Foot";
+            label = "Kitty";
             action = {
               name = "Execute";
-              command = "${pkgs.foot}/bin/foot";
-            };
-          }
-          {
-            label = "Foot (Client)";
-            action = {
-              name = "Execute";
-              command = "${pkgs.foot}/bin/footclient";
-            };
-          }
-          {
-            label = "Emacs (Client)";
-            action = {
-              name = "Execute";
-              command = "${pkgs.emacs-pgtk}/bin/emacsclient -c";
+              command = "${pkgs.kitty}/bin/kitty";
             };
           }
           {
