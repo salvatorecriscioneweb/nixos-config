@@ -14,7 +14,6 @@
       "audio"
       "kvm"
       "adbusers"
-      "seat"
     ];
     createHome = true;
     description = "Salvatore Criscione";

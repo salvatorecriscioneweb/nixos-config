@@ -7,39 +7,16 @@
 {
   imports = [
     # --- [ Services ] ---
-    ./services/kanshi.nix
-    ./services/swayidle.nix
-    ./services/cliphist.nix
+    ./services
 
     # --- [ CLI ] ---
-    ./cli/git.nix
-    ./cli/gh.nix
-    ./cli/fish.nix
-    ./cli/starship.nix
-    ./cli/helix.nix
-    ./cli/gpg.nix
-    ./cli/screenshot.nix
-    ./cli/fastfetch.nix
-    ./cli/ripgrep.nix
-    ./cli/fd.nix
-    ./cli/direnv.nix
-    ./cli/eza.nix
-    ./cli/bat.nix
-    ./cli/lazygit.nix
-    ./cli/nh.nix
-    ./cli/tmux.nix
+    ./cli
 
     # --- [ DE ] ---
-    ./graphical/labwc.nix
+    ./de
 
     # --- [ Graphical ] ---
-    ./graphical/emacs.nix
-    ./graphical/rofi.nix
-    # ./graphical/waybar.nix
-    ./graphical/swaylock.nix
-    ./graphical/browsers.nix
-    ./graphical/zathura.nix
-    ./graphical/kitty.nix
+    ./graphical
   ];
 
   home.packages = with pkgs; [
@@ -58,9 +35,6 @@
 
     # Figma
     # figma-linux
-
-    # -- [ VMs ] --
-    gnome-boxes
 
     # -- [ Graphics ] --
     gimp3
@@ -83,6 +57,7 @@
     slack
 
     htop
+    btop
   ];
 
   home.file = {
@@ -116,6 +91,7 @@
     waybar.enable = false;
     kde.enable = false;
     qt.enable = false;
+    gtk.enable = false;
   };
 
   xdg.mimeApps = {
@@ -123,7 +99,7 @@
     defaultApplications =
       let
         default_browser = "google-chrome.desktop";
-        default_terminal = "kitty.desktop";
+        default_terminal = "footclient.desktop";
         default_image_viewer = "ristretto.desktop";
       in
       {

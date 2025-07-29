@@ -12,7 +12,7 @@ Set the name
 
 Remove the Lines
 #+begin_src emacs-lisp
-(setq display-line-numbers-type nil)
+(setq display-line-numbers-type 'relative)
 #+end_src
 
 Set the ORG Directory
@@ -35,7 +35,7 @@ Setting some better defaults
 (set-keyboard-coding-system 'utf-8)
 (set-language-environment   'utf-8)
 
-;; (global-font-lock-mode 0) ; Colors are bloat
+(global-font-lock-mode 0) ; Colors are bloat
 
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
@@ -118,11 +118,11 @@ To start the initial setup just use
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       ;;(emoji +unicode)  ; 🙂
+       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       ;; (emoji +unicode)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       ;;indent-guides     ; highlighted indent columns
-       ligatures         ; ligatures and symbols to make your code pretty again
+       ;; indent-guides     ; highlighted indent columns
+       ;; ligatures         ; ligatures and symbols to make your code pretty again
        ;;minimap           ; show a map of the code on the side
        (modeline          ; snazzy, Atom-inspired modeline, plus API
         +light)
@@ -130,8 +130,8 @@ To start the initial setup just use
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup +all +defaults)   ; tame sudden yet inevitable temporary windows
-       smooth-scroll     ; So smooth you won't believe it's not butter
-       ;;tabs              ; a tab bar for Emacs
+       ;; smooth-scroll     ; So smooth you won't believe it's not butter
+       ;; tabs              ; a tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
@@ -142,7 +142,7 @@ To start the initial setup just use
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
-       file-templates    ; auto-snippets for empty files
+       ;;file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
@@ -181,30 +181,29 @@ To start the initial setup just use
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        direnv
        docker
-       ;;editorconfig      ; let someone else argue about tabs vs spaces
+       editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
        llm                 ; when I said you needed friends, I didn't mean...
        lsp                 ; M-x vscode
-       (magit              ; a git porcelain for Emacs
-        +forge)
+       magit              ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        pdf                 ; pdf enhancements
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
-       tree-sitter       ; syntax and parsing, sitting in a tree...
+       ;;tree-sitter       ; syntax and parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
-       ;;tty               ; improve the terminal Emacs experience
+       tty              ; improve the terminal Emacs experience
 
        :lang
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
-       (cc +tree-sitter +lsp)          ; C > C++ == 1
+       cc          ; C > C++ == 1
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -214,7 +213,6 @@ To start the initial setup just use
        ;;(dart +flutter)   ; paint ui and not much else
        ;;dhall
        (elixir            ; erlang done right
-        +tree-sitter
         +lsp)
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
@@ -432,8 +430,8 @@ Dired is the file manager within Emacs.  Below, I setup keybindings for image pr
 Setup Fonts
 
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "SauceCodePro Nerd Font" :size 22)
-      doom-big-font (font-spec :family "SauceCodePro Nerd Font" :size 28)
+(setq doom-font (font-spec :family "LiterationMono Nerd Font" :size 20)
+      doom-big-font (font-spec :family "LiterationMono Nerd Font" :size 28)
       doom-variable-pitch-font (font-spec :family "Inter" :size 18 :weight 'light)
       doom-emoji-font (font-spec :family "Noto Color Emoji")
       doom-serif-font (font-spec :family "Inter" :size 18 :weight 'light))
@@ -459,7 +457,7 @@ Improved Keybinds
 *** Theme
 Set the theme
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'modus-vivendi)
+(setq doom-theme 'doom-nord)
 #+END_SRC
 
 *** Customization
@@ -535,12 +533,6 @@ Faster Popup
    '(("\\`g s" . "\\`evilem--?motion-\\(.*\\)") . (nil . "◃\\1"))
    ))
 #+end_src
-** Modus Operandi
-Just a better theme
-#+begin_src emacs-lisp :tangle packages.el
-(package! modus-themes :pin "f3cd4d6983566dab0ef3bcddf812cfd565d00d08" :pin "3576d14f06f245c3111496bfb035bb0926f48089")
-#+end_src
-
 ** Spacious Padding
 
 #+begin_src emacs-lisp :tangle packages.el
@@ -551,84 +543,6 @@ Just a better theme
 (use-package! spacious-padding
   :config
   (spacious-padding-mode 1))
-#+end_src
-
-** Very Large File
-Install the package
-#+begin_src emacs-lisp :tangle packages.el
-(package! vlf :recipe (:host github :repo "emacs-straight/vlf" :files ("*.el"))
-  :pin "d500f39672b35bf8551fdfafa892c551626c8d54")
-#+end_src
-
-Now setup
-#+begin_src emacs-lisp
-(use-package! vlf-setup
-  :defer-incrementally vlf-tune vlf-base vlf-write
-  vlf-search vlf-occur vlf-follow vlf-ediff vlf
-  :commands vlf vlf-mode
-  :init
-  (defvar vlf-application 'ask) ; Avoid load-order issues
-  (defadvice! +files--ask-about-large-file-vlf (size op-type filename offer-raw)
-  "Like `files--ask-user-about-large-file', but with support for `vlf'."
-  :override #'files--ask-user-about-large-file
-  (if (eq vlf-application 'dont-ask)
-      (progn (vlf filename) (error ""))
-    (let ((prompt (format "File %s is large (%s), really %s?"
-                          (file-name-nondirectory filename)
-                          (funcall byte-count-to-string-function size) op-type)))
-      (if (not offer-raw)
-          (if (y-or-n-p prompt) nil 'abort)
-        (let ((choice
-               (car
-                (read-multiple-choice
-                 prompt '((?y "yes")
-                          (?n "no")
-                          (?l "literally")
-                          (?v "vlf"))
-                 (files--ask-user-about-large-file-help-text
-                  op-type (funcall byte-count-to-string-function size))))))
-          (cond ((eq choice ?y) nil)
-                ((eq choice ?l) 'raw)
-                ((eq choice ?v)
-                 (vlf filename)
-                 (error ""))
-                (t 'abort)))))))
-  :config
-  (advice-remove 'abort-if-file-too-large #'ad-Advice-abort-if-file-too-large)
-  (defvar-local +vlf-cumulative-linenum '((0 . 0))
-  "An alist keeping track of the cumulative line number.")
-
-(defun +vlf-update-linum ()
-  "Update the line number offset."
-  (let ((linenum-offset (alist-get vlf-start-pos +vlf-cumulative-linenum)))
-    (setq display-line-numbers-offset (or linenum-offset 0))
-    (when (and linenum-offset (not (assq vlf-end-pos +vlf-cumulative-linenum)))
-      (push (cons vlf-end-pos (+ linenum-offset
-                                 (count-lines (point-min) (point-max))))
-            +vlf-cumulative-linenum))))
-
-(add-hook 'vlf-after-chunk-update-hook #'+vlf-update-linum)
-
-;; Since this only works with absolute line numbers, let's make sure we use them.
-(add-hook! 'vlf-mode-hook (setq-local display-line-numbers t))
-  (defun +vlf-next-chunk-or-start ()
-  (if (= vlf-file-size vlf-end-pos)
-      (vlf-jump-to-chunk 1)
-    (vlf-next-batch 1))
-  (goto-char (point-min)))
-
-(defun +vlf-last-chunk-or-end ()
-  (if (= 0 vlf-start-pos)
-      (vlf-end-of-file)
-    (vlf-prev-batch 1))
-  (goto-char (point-max)))
-
-(defun +vlf-isearch-wrap ()
-  (if isearch-forward
-      (+vlf-next-chunk-or-start)
-    (+vlf-last-chunk-or-end)))
-
-(add-hook! 'vlf-mode-hook (setq-local isearch-wrap-function #'+vlf-isearch-wrap)))
 #+end_src
 
 ** Rainbow Mode

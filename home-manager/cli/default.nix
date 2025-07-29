@@ -1,0 +1,19 @@
+{
+  imports = [
+    ./git.nix
+    ./gh.nix
+    ./fish.nix
+    ./starship.nix
+    ./helix.nix
+    ./gpg.nix
+    ./screenshot.nix
+    ./fastfetch.nix
+    ./ripgrep.nix
+    ./fd.nix
+    ./direnv.nix
+    ./eza.nix
+    ./bat.nix
+    ./lazygit.nix
+    ./nh.nix
+  ];
+}

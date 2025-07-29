@@ -2,7 +2,6 @@
 {
   programs.foot = {
     enable = true;
-    server.enable = true;
     settings = {
       main = {
         shell = "${pkgs.fish}/bin/fish --login";

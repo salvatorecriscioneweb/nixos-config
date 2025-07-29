@@ -2,7 +2,7 @@
 let
   my_emacs = {
     enable = true;
-    package = pkgs.emacs-pgtk;
+    package = pkgs.emacs-nox;
   };
 in
 {
@@ -10,20 +10,10 @@ in
     # -- [ General ] --
     binutils
     coreutils
-    # libtool
     unzip
-    gcc
     clang-tools
     gnutls
-
     fd
-    (aspellWithDicts (
-      ds: with ds; [
-        en
-        en-computers
-        en-science
-      ]
-    ))
 
     # -- [ Email ] --
     # mu
@@ -42,11 +32,6 @@ in
     # -- [ Format ] --
     nodejs_20
 
-    # Go
-    # go
-    # gopls
-    # gore
-
     # Nix
     nixd
     nixfmt-rfc-style
@@ -58,4 +43,5 @@ in
   ];
 
   programs.emacs = my_emacs;
+  services.emacs = my_emacs;
 }

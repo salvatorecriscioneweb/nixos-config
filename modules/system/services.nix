@@ -5,6 +5,11 @@
   ...
 }:
 {
+  environment.shellInit = ''
+    gpg-connect-agent /bye
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  '';
+
   services = {
     journald.extraConfig = lib.mkDefault "SystemMaxUse=2G";
 
@@ -24,7 +29,6 @@
     # --- [ Storages ] ---
     udisks2.enable = lib.mkDefault true;
 
-    # Thunar
     gvfs.enable = true; # Mount, trash, and other functionalities
     tumbler.enable = true; # Thumbnail support for images
 

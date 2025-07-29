@@ -9,6 +9,7 @@
       "/var/lib/fprint"
       "/var/lib/cloudflare-warp"
       "/var/lib/libvirt"
+      "/var/lib/docker"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/etc/ssh"
@@ -35,7 +36,6 @@
         ".hex"
         ".gnupg"
         ".ssh"
-        ".tmux"
 
         # Locals
         ".local/share/warp"
@@ -50,9 +50,7 @@
         ".config/emacs"
         ".config/doom"
         ".config/Slack"
-        ".config/gnome-boxes"
         ".config/spotify"
-        ".config/xfce4"
         ".cache/spotify"
         ".config/BraveSoftware"
         ".config/google-chrome"

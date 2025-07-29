@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       mainBar = {
-        height = 32;
+        height = 36;
         spacing = 8;
         position = "top";
         layer = "top";
@@ -14,6 +14,7 @@
         margin-top = 0;
 
         modules-left = [
+          "sway/workspaces"
           "mpris"
         ];
         modules-center = [
@@ -25,15 +26,11 @@
           "keyboard-state"
           "battery"
           "network"
-          "tray"
         ];
         modules-right = [
-          "river/tags"
+          "tray"
           "clock"
         ];
-        "river/tags" = {
-          "num-tags" = 5;
-        };
         "mpris" = {
           format = "{status}: {dynamic}";
           dynamic-len = 100;
@@ -74,7 +71,6 @@
           # "thermal-zone"= 2;
           "hwmon-path" = "/sys/class/hwmon/hwmon2/temp1_input";
           "critical-threshold" = 80;
-          # "format-critical"= "{temperatureC}°C {icon}";
           "format" = "{temperatureC}°C {icon}";
           "format-icons" = [
             ""
@@ -92,15 +88,13 @@
         };
         "battery" = {
           "states" = {
-            # "good": 95,
             "warning" = 30;
             "critical" = 15;
           };
           "format" = "{capacity}% {icon} ";
-          "format-charging" = "{capacity}%  ";
+          "format-charging" = "{capacity}%  ";
           "format-plugged" = "{capacity}%  ";
           "format-alt" = "{time} {icon}";
-          # "format-good": "", // An empty format will hide the module
           # "format-full": "",
           "format-icons" = [
             ""
@@ -114,8 +108,8 @@
           # "interface": "wlp2*", // (Optional) To force the use of this interface
           "format-wifi" = "{signalStrength}%   ";
           "format-ethernet" = "Connected  ";
-          "tooltip-format" = "{ifname} via {gwaddr} ";
-          "format-linked" = "{ifname} (No IP) ";
+          "tooltip-format" = "{ifname} via {gwaddr} ";
+          "format-linked" = "{ifname} (No IP) ";
           "format-disconnected" = "Disconnected ⚠ ";
           "format-alt" = "{ifname}: {ipaddr}/{cidr}";
         };
@@ -128,8 +122,6 @@
           "format-source-muted" = "";
           "format-icons" = {
             "headphone" = "";
-            "hands-free" = "";
-            "headset" = "";
             "phone" = "";
             "portable" = "";
             "car" = "";
@@ -139,7 +131,6 @@
               ""
             ];
           };
-          "on-click" = "pavucontrol";
         };
       };
     };
@@ -154,7 +145,7 @@
       }
 
       window#waybar {
-          background-color: transparent;
+          background-color: #2e3440;
           color: #ffffff;
           transition-property: background-color;
           transition-duration: .5s;
@@ -165,7 +156,7 @@
       }
 
       #workspaces button {
-          background: #1f1f1f;
+          background: #2e3440;
           color: #ffffff;
       }
 
@@ -173,7 +164,6 @@
       #workspaces button:hover {
           background: lightblue;
           color: black;
-          border-bottom: 3px solid #ffffff;
 
       }
 
@@ -239,27 +229,24 @@
       }
 
       #clock {
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
-          border: 1px solid #FFFFFF;
       }
 
       #battery {
           background-color: #ffffff;
-          color: #000000;
-          border: 1px solid #FFFFFF;
+          color: #2e3440;
       }
 
       #battery.charging, #battery.plugged {
           color: #ffffff;
           background-color: #26A65B;
-          border: 1px solid #FFFFFF;
       }
 
       @keyframes blink {
           to {
               background-color: #ffffff;
-              color: #000000;
+              color: #2e3440;
           }
       }
 
@@ -274,26 +261,23 @@
       }
 
       label:focus {
-          background-color: #000000;
+          background-color: #2e3440;
       }
 
       #cpu {
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
-          border: 1px solid #FFFFFF;
       }
 
       #memory {
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
-          border: 1px solid #FFFFFF;
       }
 
       #disk {
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
           border: 1px solid #FFFFFF;
-
       }
 
       #backlight {
@@ -303,111 +287,84 @@
       }
 
       #network {
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
-          border: 1px solid #FFFFFF;
-
       }
 
       #network.disconnected {
-          background-color: #171717;
+          background-color: #2e3440;
           color: red;
-          border: 1px solid #FFFFFF;
-
       }
 
       #pulseaudio {
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
-          border: 1px solid #FFFFFF;
-
       }
 
       #pulseaudio.muted {
-          background-color: #171717;
+          background-color: #2e3440;
           color: red;
-          border: 1px solid #FFFFFF;
-
       }
 
       #mpris {
-          background-color: #171717;
+          background-color: #2e3440;
           color: white;
-          border: 1px solid #FFFFFF;
-
       }
 
       #mpris.spotify {
-          background-color: #171717;
+          background-color: #2e3440;
           color: white;
-
-          border: 1px solid #FFFFFF;
-
       }
 
       #mpris.vlc {
-          background-color: #171717;
+          background-color: #2e3440;
           color: white;
-          border: 1px solid #FFFFFF;
-
       }
 
       #mpris.brave {
-          background-color: #171717;
+          background-color: #2e3440;
           color: white;
-          border: 1px solid #FFFFFF;
-
       }
 
       #custom-power{
-          background-color: #171717;
+          background-color: #2e3440;
           font-size: 18px;
           margin-right: 5px;
-          border: 1px solid #FFFFFF;
-
       }
 
       #custom-launcher{
-          background-color: #171717;
+          background-color: #2e3440;
           font-size: 20px;
           margin-left: 5px;
           border: 1px solid #FFFFFF;
-
       }
 
       #custom-layout{
-          background-color: #171717;
+          background-color: #2e3440;
           color: white;
           font-size:20px;
-          border: 1px solid #FFFFFF;
-
       }
 
       #custom-updater {
-          background-color: #171717;
+          background-color: #2e3440;
           color: white;
-          border: 1px solid #FFFFFF;
-
       }
 
       #custom-snip {
-          background-color: #171717;
+          background-color: #2e3440;
           color: skyblue;
           font-size: 20px;
-          border: 1px solid #FFFFFF;
-
       }
 
       #custom-wallpaper {
-          background-color: #171717;
+          background-color: #2e3440;
           color: pink;
           font-size: 20px;
       }
 
       #tags{
-          background-color: #171717;
+          background-color: #2e3440;
           font-size: 20px;
-          border: 1px solid #FFFFFF;
       }
 
       #tags button.occupied {
@@ -428,15 +385,13 @@
 
 
       #taskbar{
-          background-color: #171717;
+          background-color: #2e3440;
           border-radius: 0px 20px 20px 0px;
-          border: 1px solid #FFFFFF;
       }
 
       #temperature {
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
-          border: 1px solid #FFFFFF;
       }
 
       #temperature.critical {
@@ -444,45 +399,42 @@
       }
 
       #tray {
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
-          border: 1px solid #FFFFFF;
       }
 
       #tray > .passive {
           -gtk-icon-effect: dim;
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
       }
 
       #tray > .needs-attention {
           -gtk-icon-effect: highlight;
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
       }
 
       #idle_inhibitor {
-          background-color: #171717;
-          border: 1px solid #FFFFFF;
+          background-color: #2e3440;
       }
 
       #idle_inhibitor.activated {
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
           border-radius: 20px 0px 0px 20px;
 
       }
 
       #language {
-          background-color: #171717;
+          background-color: #2e3440;
           color: #ffffff;
           min-width: 16px;
-          border: 1px solid #FFFFFF;
       }
 
       #keyboard-state {
           background: #97e1ad;
-          color: #000000;
+          color: #2e3440;
           min-width: 16px;
       }
 
