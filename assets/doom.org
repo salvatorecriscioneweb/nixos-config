@@ -35,7 +35,7 @@ Setting some better defaults
 (set-keyboard-coding-system 'utf-8)
 (set-language-environment   'utf-8)
 
-(global-font-lock-mode 0) ; Colors are bloat
+;; (global-font-lock-mode 0) ; Colors are bloat
 
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
@@ -346,36 +346,6 @@ Improve the keybinds
       :desc "Org babel tangle" "m B" #'org-babel-tangle)
 #+end_src
 
-*** Org Mode Changes
-
-#+begin_src emacs-lisp
-(after! org
-  (setq org-default-notes-file (expand-file-name "notes.org" org-directory)
-        org-ellipsis " ▼ "
-        org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
-        org-superstar-itembullet-alist '((?+ . ?➤) (?- . ?✦)) ; changes +/- symbols in item lists
-        org-log-done 'time
-        org-hide-emphasis-markers t
-        ;; ex. of org-link-abbrev-alist in action
-        ;; [[arch-wiki:Name_of_Page][Description]]
-        org-link-abbrev-alist    ; This overwrites the default Doom org-link-abbrev-list
-          '(("google" . "http://www.google.com/search?q=")
-            ("arch-wiki" . "https://wiki.archlinux.org/index.php/")
-            ("ddg" . "https://duckduckgo.com/?q=")
-            ("wiki" . "https://en.wikipedia.org/wiki/"))
-        org-table-convert-region-max-lines 20000
-        org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
-          '((sequence
-             "TODO(t)"           ; A task that is ready to be tackled
-             "BLOG(b)"           ; Blog writing assignments
-             "GYM(g)"            ; Things to accomplish at the gym
-             "PROJ(p)"           ; A project that contains other tasks
-             "VIDEO(v)"          ; Video assignments
-             "WAIT(w)"           ; Something is holding up this task
-             "|"                 ; The pipe necessary to separate "active" states and "inactive" states
-             "DONE(d)"           ; Task has been completed
-             "CANCELLED(c)" )))) ; Task has been cancelled
-#+end_src
 *** Dired
 Dired is the file manager within Emacs.  Below, I setup keybindings for image previews (peep-dired).  Doom Emacs does not use ‘SPC d’ for any of its keybindings, so I’ve chosen the format of ‘SPC d’ plus ‘key’.
 
@@ -438,6 +408,14 @@ Setup Fonts
 #+end_src
 
 *** Keybinds
+Enable Mouse mode
+#+begin_src emacs-lisp
+;;;; Mouse scrolling in terminal emacs
+(unless (display-graphic-p)
+  ;; activate mouse-based scrolling
+  (xterm-mouse-mode 1))
+#+end_src
+
 Improved Keybinds
 #+begin_src emacs-lisp
 (map! :map evil-window-map

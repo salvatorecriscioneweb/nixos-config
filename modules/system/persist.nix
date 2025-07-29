@@ -50,11 +50,13 @@
         ".config/emacs"
         ".config/doom"
         ".config/Slack"
-        ".config/spotify"
-        ".cache/spotify"
         ".config/BraveSoftware"
         ".config/google-chrome"
         ".local/share/doom"
+
+        # --- [ Spotify ] ---
+        ".config/spotify"
+        ".cache/spotify"
       ];
       files = [
         ".config/gh/hosts.yml"

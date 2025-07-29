@@ -24,6 +24,7 @@
       nerd-fonts.liberation
       nerd-fonts.tinos
       nerd-fonts.proggy-clean-tt
+      nerd-fonts.ubuntu-mono
     ];
   };
 }

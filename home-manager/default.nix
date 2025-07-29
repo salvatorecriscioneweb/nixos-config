@@ -6,16 +6,9 @@
 }:
 {
   imports = [
-    # --- [ Services ] ---
     ./services
-
-    # --- [ CLI ] ---
     ./cli
-
-    # --- [ DE ] ---
     ./de
-
-    # --- [ Graphical ] ---
     ./graphical
   ];
 
@@ -23,8 +16,10 @@
     chafa
     age
     wl-clipboard
-    # Image Viewer
+
+    # --- [ Image Viewer ] ---
     xfce.ristretto
+
     xfce.mousepad
     xfce.xfce4-notifyd
 

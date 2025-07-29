@@ -9,12 +9,11 @@
     };
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
-    # base16Scheme = ../../assets/base16-oxocarbon.yaml;
 
     # Fonts
     fonts =
       let
-        nmono = "LiterationMono Nerd Font";
+        nmono = "UbuntuMono Nerd Font";
         nnorm = "Inter";
       in
       {
@@ -36,9 +35,9 @@
         };
 
         sizes = {
-          desktop = 14;
+          desktop = 15;
           applications = 14;
-          terminal = 16;
+          terminal = 18;
         };
       };
   };
