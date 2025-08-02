@@ -8,14 +8,16 @@
   imports = [
     ./services
     ./cli
-    ./de
     ./graphical
+    ./graphical/niri.nix
   ];
 
   home.packages = with pkgs; [
     chafa
     age
     wl-clipboard
+
+    lazydocker
 
     # --- [ Image Viewer ] ---
     xfce.ristretto

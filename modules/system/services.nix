@@ -11,7 +11,12 @@
   '';
 
   services = {
-    journald.extraConfig = lib.mkDefault "SystemMaxUse=2G";
+    speechd.enable = lib.mkForce false;
+    journald = {
+      storage = "volatile"; # Store logs in memory
+      upload.enable = false; # Disable remote log upload (the default)
+      extraConfig = lib.mkDefault "SystemMaxUse=2G";
+    };
 
     printing.enable = lib.mkForce false;
 
@@ -60,5 +65,7 @@
     btrfs.autoScrub.enable = true;
   };
 
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services = {
+    NetworkManager-wait-online.enable = false;
+  };
 }

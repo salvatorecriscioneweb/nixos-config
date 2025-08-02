@@ -20,11 +20,8 @@
       nerd-fonts.symbols-only
 
       # -- [ Nerd Fonts ] --
-      nerd-fonts.sauce-code-pro
-      nerd-fonts.liberation
-      nerd-fonts.tinos
-      nerd-fonts.proggy-clean-tt
-      nerd-fonts.ubuntu-mono
+      nerd-fonts.recursive-mono
+      nerd-fonts.monoid
     ];
   };
 }

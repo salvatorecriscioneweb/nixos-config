@@ -20,6 +20,12 @@ systemFunc {
     inputs.stylix.nixosModules.stylix
     inputs.home-manager.nixosModules.home-manager
     {
+
+      nixpkgs.overlays = with inputs; [
+        emacs-overlay.overlay
+        niri-flake.overlays.niri
+      ];
+
       environment.systemPackages = with inputs; [
         agenix.packages.${system}.default
       ];
@@ -35,7 +41,9 @@ systemFunc {
         useGlobalPkgs = true;
         useUserPackages = true;
         backupFileExtension = "backup";
-        # sharedModules = [ ];
+        sharedModules = [
+          inputs.niri-flake.homeModules.niri
+        ];
         users.ssalva = import homeConfig;
       };
     }

@@ -4,18 +4,22 @@
 
 * Config
 ** General Informations
+
 Set the name
+
 #+begin_src emacs-lisp
 (setq user-full-name "Salvatore Criscione"
       user-mail-address "not.salvatore@gmail.com")
 #+end_src
 
 Remove the Lines
+
 #+begin_src emacs-lisp
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type nil)
 #+end_src
 
 Set the ORG Directory
+
 #+begin_src emacs-lisp
 (setq org-directory "~/Notes/")
 #+end_src
@@ -26,8 +30,11 @@ Setup the Auth Info, for now disabled
 ;;(setq auth-sources '("~/.authinfo.gpg")
 ;;      auth-source-cache-expiry nil) ; default is 7200 (2h)
 #+end_src
+
 ** Better Defaults
+
 Setting some better defaults
+
 #+begin_src emacs-lisp
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -82,6 +89,7 @@ Bookmarks are somewhat like registers in that they record positions you can jump
        :desc "Delete bookmark"                         "M" #'bookmark-set
        :desc "Save current bookmarks to bookmark file" "w" #'bookmark-save))
 #+end_src
+
 ** Windows
 Some improvements for the window, specifically allowing to choose which window i do want
 #+begin_src emacs-lisp
@@ -93,19 +101,47 @@ Some improvements for the window, specifically allowing to choose which window i
   (consult-buffer))
 #+end_src
 
+and gives a better title
+
+#+begin_src emacs-lisp
+(setq frame-title-format
+      '(""
+        (:eval
+         (if (string-match-p (regexp-quote (or (bound-and-true-p org-roam-directory) "\u0000"))
+                             (or buffer-file-name ""))
+             (replace-regexp-in-string
+              ".*/[0-9]*-?" "☰ "
+              (subst-char-in-string ?_ ?\s buffer-file-name))
+           "%b"))
+        (:eval
+         (when-let ((project-name (and (featurep 'projectile) (projectile-project-name))))
+           (unless (string= "-" project-name)
+             (format (if (buffer-modified-p)  " ◉ %s" "  ●  %s") project-name))))))
+#+end_src
 ** Doom Init
 To start the initial setup just use
 #+begin_src emacs-lisp :noexport
 (doom! :config literate)
 #+end_src
 
+
+The first section is mostly empty since I don't require support for any specific languages.
+
 #+begin_src emacs-lisp :tangle init.el
+
+;; This file controls what Doom modules are enabled and what order they load in.
+;; Press 'K' on a module to view its documentation, and 'gd' to browse its directory.
+
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
        ;;chinese
        ;;japanese
        ;;layout            ; auie,ctsrnm is the superior home row
 
+#+end_src
+
+
+#+begin_src emacs-lisp :tangle init.el
        :completion
        ;;company           ; the ultimate code completion backend
        (corfu +orderless +dabbrev)  ; complete with cap(f), cape and a flying feather!
@@ -114,65 +150,75 @@ To start the initial setup just use
        ;;ivy               ; a search engine for love and life
        (vertico +icons)           ; the search engine of the future
 
+#+end_src
+
+
+
+#+begin_src emacs-lisp :tangle init.el
        :ui
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;; (emoji +unicode)  ; 🙂
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;; indent-guides     ; highlighted indent columns
        ;; ligatures         ; ligatures and symbols to make your code pretty again
        ;;minimap           ; show a map of the code on the side
-       (modeline          ; snazzy, Atom-inspired modeline, plus API
-        +light)
+       modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
        ;;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup +all +defaults)   ; tame sudden yet inevitable temporary windows
        ;; smooth-scroll     ; So smooth you won't believe it's not butter
        ;; tabs              ; a tab bar for Emacs
-       treemacs          ; a project drawer, like neotree but cooler
-       ;;unicode           ; extended unicode support for various languages
-       (vc-gutter +pretty) ; vcs diff in the fringe
-       vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       window-select     ; visually switch windows
-       workspaces        ; tab emulation, persistence & separate workspaces
-       ;; zen               ; distraction-free coding or writing
+       treemacs             ; a project drawer, like neotree but cooler
+       ;;unicode            ; extended unicode support for various languages
+       (vc-gutter +pretty)  ; vcs diff in the fringe
+       vi-tilde-fringe      ; fringe tildes to mark beyond EOB
+       (window-select       ; visually switch windows
+        +numbers)
+       workspaces           ; tab emulation, persistence & separate workspaces
+       zen                  ; distraction-free coding or writing
+#+end_src
 
+#+begin_src emacs-lisp :tangle init.el
        :editor
-       (evil +everywhere); come to the dark side, we have cookies
-       ;;file-templates    ; auto-snippets for empty files
-       fold              ; (nigh) universal code folding
-       (format +onsave)  ; automated prettiness
+       (evil +everywhere)  ; come to the dark side, we have cookies
+       file-templates      ; auto-snippets for empty files
+       fold                ; (nigh) universal code folding
+       (format +onsave)    ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
        ;;multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
-       ;;snippets          ; my elves. They type so I don't have to
+       snippets          ; my elves. They type so I don't have to
        ;;word-wrap         ; soft wrapping with language-aware indent
+#+end_src
 
+#+begin_src emacs-lisp :tangle init.el
        :emacs
-       dired             ; making dired pretty [functional]
-       electric          ; smarter, keyword-based electric-indent
+       dired               ; making dired pretty [functional]
+       electric            ; smarter, keyword-based electric-indent
        ;;eww               ; the internet is gross
-       ;;ibuffer           ; interactive buffer management
-       (undo              ; persistent, smarter undo for your inevitable mistakes
-        +tree)
-       vc                ; version-control and Emacs, sitting in a tree
+       ibuffer             ; interactive buffer management
+       undo                ; persistent, smarter undo for your inevitable mistakes
+       vc                  ; version-control and Emacs, sitting in a tree
+#+end_src
 
+#+begin_src emacs-lisp :tangle init.el
        :term
-       eshell            ; the elisp shell that works everywhere
+       eshell              ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
        ;;term              ; basic terminal emulator for Emacs
        ;;vterm             ; the best terminal emulation in Emacs
 
        :checkers
-       syntax              ; tasing you for every semicolon you forget
+       ;;syntax              ; tasing you for every semicolon you forget
        ;;(spell +flyspell) ; tasing you for misspelling mispelling
-       ;;grammar           ; tasing grammar mistake every you make
+       grammar             ; tasing grammar mistake every you make
 
        :tools
        ;;ansible
@@ -181,19 +227,22 @@ To start the initial setup just use
        ;;debugger          ; FIXME stepping through code, to help you add bugs
        direnv
        docker
-       editorconfig      ; let someone else argue about tabs vs spaces
+       editorconfig        ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
-       lookup              ; navigate your code and its documentation
+       (lookup             ; helps you navigate your code and documentation
+        +dictionary        ; dictionary/thesaurus is nice
+        +docsets)          ; ...or in Dash docsets locally
        llm                 ; when I said you needed friends, I didn't mean...
-       lsp                 ; M-x vscode
-       magit              ; a git porcelain for Emacs
+       (lsp                 ; M-x vscode
+        +eglot)
+       magit               ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        pdf                 ; pdf enhancements
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
-       ;;tree-sitter       ; syntax and parsing, sitting in a tree...
+       tree-sitter       ; syntax and;; parsing, sitting in a tree...
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
@@ -246,6 +295,7 @@ To start the initial setup just use
        ;;ocaml             ; an objective camel
        (org               ; organize your plain life in plain text
         +journal
+        +present
         +roam2)
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
@@ -265,13 +315,13 @@ To start the initial setup just use
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
-       ;;terra             ; Earth and Moon in alignment for performance.
+       terra             ; Earth and Moon in alignment for performance.
        web               ; the tubes
        yaml              ; JSON, but readable
-       ;;zig               ; C, but simpler
+       zig               ; C, but simpler
 
        :email
-       ;;(mu4e +org +gmail)
+       (:if (executable-find "mu") (mu4e +org))
        ;;notmuch
        ;;(wanderlust +gmail)
 
@@ -396,15 +446,16 @@ Dired is the file manager within Emacs.  Below, I setup keybindings for image pr
                               ("mkv" . "mpv")
                               ("mp4" . "mpv")))
 #+end_src
+
 *** Fonts
 Setup Fonts
 
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "LiterationMono Nerd Font" :size 20)
-      doom-big-font (font-spec :family "LiterationMono Nerd Font" :size 28)
+(setq doom-font (font-spec :family "RecMonoDuotone Nerd Font" :size 18)
+      doom-big-font (font-spec :family "RecMonoLinear Nerd Font" :size 26)
       doom-variable-pitch-font (font-spec :family "Inter" :size 18 :weight 'light)
       doom-emoji-font (font-spec :family "Noto Color Emoji")
-      doom-serif-font (font-spec :family "Inter" :size 18 :weight 'light))
+      doom-serif-font (font-spec :family "RecMonoLinear Nerd Font" :size 18))
 #+end_src
 
 *** Keybinds
@@ -432,10 +483,27 @@ Improved Keybinds
       "C-<right>"      #'+evil/window-move-right)
 #+end_src
 
+#+begin_src emacs-lisp
+(global-set-key [remap dabbrev-expand] #'hippie-expand)
+(setq hippie-expand-try-functions-list
+      '(try-expand-list
+        try-expand-dabbrev-visible
+        try-expand-dabbrev
+        try-expand-all-abbrevs
+        try-expand-dabbrev-all-buffers
+        try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-dabbrev-from-kill
+        try-expand-whole-kill
+        try-expand-line
+        try-complete-lisp-symbol-partially
+        try-complete-lisp-symbol))
+#+end_src
+
 *** Theme
 Set the theme
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'modus-operandi-tinted)
 #+END_SRC
 
 *** Customization
@@ -445,6 +513,7 @@ Set the theme
 #+end_src
 
 *** EShell
+
 #+begin_src emacs-lisp
 (map! :leader
       :desc "Eshell"                 "e s" #'eshell
@@ -468,30 +537,27 @@ Set as default GPT4.1 for Copilot GPTel
   (setq gptel-model 'gpt-4.1
         gptel-backend (gptel-make-gh-copilot "Copilot")))
 #+end_src
-*** LSP
-Add to the list of ignored directories deps
-#+begin_src emacs-lisp
-(with-eval-after-load 'lsp-mode
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]deps"))
-#+end_src
+*** ORG Mode
 
-
-And avoid the automatic download of LSP, as i handle using Nixos config
-#+begin_src emacs-lisp
-(after! lsp-mode
-  (setq lsp-enable-symbol-highlighting nil
-        ;; lsp-elixir-server-command ( "elixir-ls" )
-        ;; If an LSP server isn't present when I start a prog-mode buffer, you
-        ;; don't need to tell me. I know. On some machines I don't care to have
-        ;; a whole development environment for some ecosystems.
-        lsp-enable-suggest-server-download nil))
-#+end_src
-
+Open a new ORG Buffer
 
 #+begin_src emacs-lisp
-(after! lsp-ui
-  (setq lsp-ui-sideline-enable nil  ; no more useful than flycheck
-        lsp-ui-doc-enable nil))     ; redundant with K
+(evil-define-command +evil-buffer-org-new (_count file)
+  "Creates a new ORG buffer replacing the current window, optionally
+   editing a certain FILE"
+  :repeat nil
+  (interactive "P<f>")
+  (if file
+      (evil-edit file)
+    (let ((buffer (generate-new-buffer "*new org*")))
+      (set-window-buffer nil buffer)
+      (with-current-buffer buffer
+        (org-mode)
+        (setq-local doom-real-buffer-p t)))))
+
+(map! :leader
+      (:prefix "b"
+       :desc "New empty Org buffer" "o" #'+evil-buffer-org-new))
 #+end_src
 * Packages
 ** Init
@@ -566,4 +632,293 @@ Faster Popup
       transient-values '((magit-rebase "--autosquash" "--autostash")
                          (magit-pull "--rebase" "--autostash")
                          (magit-revert "--autostash")))
+#+end_src
+
+** Eglot
+** Consult
+#+begin_quote
+From the :completion vertico module. Origin: https://tecosaur.github.io/emacs-config/config.html#consult
+#+end_quote
+
+Since we're using 3.4.10 too, the separation between buffers and files is already clear, and there's no need for a different face.
+
+#+begin_src emacs-lisp
+(after! consult
+  (set-face-attribute 'consult-file nil :inherit 'consult-buffer)
+  (setf (plist-get (alist-get 'perl consult-async-split-styles-alist) :initial) ";"))
+#+end_src
+
+* Visual Packages
+** Modus
+
+Get updated Theme
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! modus-themes :pin "f3cd4d6983566dab0ef3bcddf812cfd565d00d08" :pin "3576d14f06f245c3111496bfb035bb0926f48089")
+#+end_src
+
+** Modeline Tweaks
+
+Some tweaks
+
+#+begin_src emacs-lisp
+(defun doom-modeline-conditional-buffer-encoding ()
+  "We expect the encoding to be LF UTF-8, so only show the modeline when this is not the case"
+  (setq-local doom-modeline-buffer-encoding
+              (unless (and (memq (plist-get (coding-system-plist buffer-file-coding-system) :category)
+                                 '(coding-category-undecided coding-category-utf-8))
+                           (not (memq (coding-system-eol-type buffer-file-coding-system) '(1 2))))
+                t)))
+
+(add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
+#+end_src
+
+** Marginalia
+#+begin_src emacs-lisp
+(after! marginalia
+  (setq marginalia-censor-variables nil)
+
+  (defadvice! +marginalia--anotate-local-file-colorful (cand)
+    "Just a more colourful version of `marginalia--anotate-local-file'."
+    :override #'marginalia--annotate-local-file
+    (when-let (attrs (file-attributes (substitute-in-file-name
+                                       (marginalia--full-candidate cand))
+                                      'integer))
+      (marginalia--fields
+       ((marginalia--file-owner attrs)
+        :width 12 :face 'marginalia-file-owner)
+       ((marginalia--file-modes attrs))
+       ((+marginalia-file-size-colorful (file-attribute-size attrs))
+        :width 7)
+       ((+marginalia--time-colorful (file-attribute-modification-time attrs))
+        :width 12))))
+
+  (defun +marginalia--time-colorful (time)
+    (let* ((seconds (float-time (time-subtract (current-time) time)))
+           (color (doom-blend
+                   (face-attribute 'marginalia-date :foreground nil t)
+                   (face-attribute 'marginalia-documentation :foreground nil t)
+                   (/ 1.0 (log (+ 3 (/ (+ 1 seconds) 345600.0)))))))
+      ;; 1 - log(3 + 1/(days + 1)) % grey
+      (propertize (marginalia--time time) 'face (list :foreground color))))
+
+  (defun +marginalia-file-size-colorful (size)
+    (let* ((size-index (/ (log (+ 1 size)) 7.0))
+           (color (if (< size-index 10000000) ; 10m
+                      (doom-blend 'orange 'green size-index)
+                    (doom-blend 'red 'orange (- size-index 1)))))
+      (propertize (file-size-human-readable size) 'face (list :foreground color)))))
+#+end_src
+** Zenmode
+#+begin_src emacs-lisp
+(setq +zen-text-scale 0.8)
+#+end_src
+
+and centering the text
+#+begin_src emacs-lisp
+(defvar +zen-serif-p t
+  "Whether to use a serifed font with `mixed-pitch-mode'.")
+(defvar +zen-org-starhide t
+  "The value `org-modern-hide-stars' is set to.")
+
+(after! writeroom-mode
+  (defvar-local +zen--original-org-indent-mode-p nil)
+  (defvar-local +zen--original-mixed-pitch-mode-p nil)
+  (defun +zen-enable-mixed-pitch-mode-h ()
+    "Enable `mixed-pitch-mode' when in `+zen-mixed-pitch-modes'."
+    (when (apply #'derived-mode-p +zen-mixed-pitch-modes)
+      (if writeroom-mode
+          (progn
+            (setq +zen--original-mixed-pitch-mode-p mixed-pitch-mode)
+            (funcall (if +zen-serif-p #'mixed-pitch-serif-mode #'mixed-pitch-mode) 1))
+        (funcall #'mixed-pitch-mode (if +zen--original-mixed-pitch-mode-p 1 -1)))))
+  (defun +zen-prose-org-h ()
+    "Reformat the current Org buffer appearance for prose."
+    (when (eq major-mode 'org-mode)
+      (setq display-line-numbers nil
+            visual-fill-column-width 60
+            org-adapt-indentation nil)
+      (when (featurep 'org-modern)
+        (setq-local org-modern-star '("🙘" "🙙" "🙚" "🙛")
+                    ;; org-modern-star '("🙐" "🙑" "🙒" "🙓" "🙔" "🙕" "🙖" "🙗")
+                    org-modern-hide-stars +zen-org-starhide)
+        (org-modern-mode -1)
+        (org-modern-mode 1))
+      (setq
+       +zen--original-org-indent-mode-p org-indent-mode)
+      (org-indent-mode -1)))
+  (defun +zen-nonprose-org-h ()
+    "Reverse the effect of `+zen-prose-org'."
+    (when (eq major-mode 'org-mode)
+      (when (bound-and-true-p org-modern-mode)
+        (org-modern-mode -1)
+        (org-modern-mode 1))
+      (when +zen--original-org-indent-mode-p (org-indent-mode 1))))
+  (pushnew! writeroom--local-variables
+            'display-line-numbers
+            'visual-fill-column-width
+            'org-adapt-indentation
+            'org-modern-mode
+            'org-modern-star
+            'org-modern-hide-stars)
+  (add-hook 'writeroom-mode-enable-hook #'+zen-prose-org-h)
+  (add-hook 'writeroom-mode-disable-hook #'+zen-nonprose-org-h))
+#+end_src
+** Treemacs
+#+begin_src emacs-lisp
+(after! treemacs
+  (defvar treemacs-file-ignore-extensions '()
+    "File extension which `treemacs-ignore-filter' will ensure are ignored")
+  (defvar treemacs-file-ignore-globs '()
+    "Globs which will are transformed to `treemacs-file-ignore-regexps' which `treemacs-ignore-filter' will ensure are ignored")
+  (defvar treemacs-file-ignore-regexps '()
+    "RegExps to be tested to ignore files, generated from `treeemacs-file-ignore-globs'")
+  (defun treemacs-file-ignore-generate-regexps ()
+    "Generate `treemacs-file-ignore-regexps' from `treemacs-file-ignore-globs'"
+    (setq treemacs-file-ignore-regexps (mapcar 'dired-glob-regexp treemacs-file-ignore-globs)))
+  (if (equal treemacs-file-ignore-globs '()) nil (treemacs-file-ignore-generate-regexps))
+  (defun treemacs-ignore-filter (file full-path)
+    "Ignore files specified by `treemacs-file-ignore-extensions', and `treemacs-file-ignore-regexps'"
+    (or (member (file-name-extension file) treemacs-file-ignore-extensions)
+        (let ((ignore-file nil))
+          (dolist (regexp treemacs-file-ignore-regexps ignore-file)
+            (setq ignore-file (or ignore-file (if (string-match-p regexp full-path) t nil)))))))
+  (add-to-list 'treemacs-ignored-file-predicates #'treemacs-ignore-filter))
+
+(setq treemacs-file-ignore-extensions
+      '(;; LaTeX
+        "aux"
+        "ptc"
+        "fdb_latexmk"
+        "fls"
+        "synctex.gz"
+        "toc"
+        ;; LaTeX - glossary
+        "glg"
+        "glo"
+        "gls"
+        "glsdefs"
+        "ist"
+        "acn"
+        "acr"
+        "alg"
+        ;; LaTeX - pgfplots
+        "mw"
+        ;; LaTeX - pdfx
+        "pdfa.xmpi"
+        ))
+(setq treemacs-file-ignore-globs
+      '(;; LaTeX
+        "*/_minted-*"
+        ;; AucTeX
+        "*/.auctex-auto"
+        "*/_region_.log"
+        "*/_region_.tex"
+        ;; Elixir
+        "*/deps"
+        "*/_build"))
+#+end_src
+
+** Visual Fill
+#+begin_src emacs-lisp
+(defun +visual-fill-column--window-max-text-width--fixed (&optional window)
+  "Return the maximum possible text width of WINDOW.
+The maximum possible text width is the width of the current text
+area plus the margins, but excluding the fringes, scroll bar, and
+right divider.  WINDOW defaults to the selected window.  The
+return value is scaled to account for `text-scale-mode-amount'
+and `text-scale-mode-step'."
+  (or window (setq window (selected-window)))
+  (let* ((margins (window-margins window))
+         (buffer (window-buffer window))
+         (scale (if (and visual-fill-column-adjust-for-text-scale
+                         (boundp 'text-scale-mode-step)
+                         (boundp 'text-scale-mode-amount))
+                    (with-current-buffer buffer
+                      (expt text-scale-mode-step
+                            text-scale-mode-amount))
+                  1.0))
+         (remap-scale
+          (if (>= emacs-major-version 29)
+              (/ (window-width window 'remap) (float (window-width window)))
+            1.0)))
+    (truncate (/ (+ (window-width window (and (>= emacs-major-version 29) 'remap))
+                    (* (or (car margins) 0) remap-scale)
+                    (* (or (cdr margins) 0) remap-scale))
+                 (float scale)))))
+
+(advice-add 'visual-fill-column--window-max-text-width
+            :override #'+visual-fill-column--window-max-text-width--fixed)
+
+(defun +visual-fill-column--set-margins--fixed (window)
+  "Set window margins for WINDOW."
+  ;; Calculate left & right margins.
+  (let* ((total-width (visual-fill-column--window-max-text-width window))
+         (remap-scale
+          (if (>= emacs-major-version 29)
+              (/ (window-width window 'remap) (float (window-width window)))
+            1.0))
+         (width (or visual-fill-column-width
+                    fill-column))
+         (margins (if (< (- total-width width) 0) ; margins must be >= 0
+                      0
+                    (round (/ (- total-width width) remap-scale))))
+         (left (if visual-fill-column-center-text
+                   (/ margins 2)
+                 0))
+         (right (- margins left)))
+
+    (if visual-fill-column-extra-text-width
+        (let ((add-width (visual-fill-column--add-extra-width left right visual-fill-column-extra-text-width)))
+          (setq left (car add-width)
+                right (cdr add-width))))
+
+    ;; put an explicitly R2L buffer on the right side of the window
+    (when (and (eq bidi-paragraph-direction 'right-to-left)
+               (= left 0))
+      (setq left right)
+      (setq right 0))
+
+    (set-window-margins window left right)))
+
+(advice-add 'visual-fill-column--set-margins
+            :override #'+visual-fill-column--set-margins--fixed)
+#+end_src
+
+* LSP Config
+** Nix
+Use the LSP
+
+#+begin_src emacs-lisp
+(use-package eglot
+  :config
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs
+                 '((nix-mode) . ("nixd")))))
+#+end_src
+
+** Elixir
+#+begin_example
+(treesit-language-source-alist
+  '((heex "https://github.com/phoenixframework/tree-sitter-heex")
+    (elixir "https://github.com/elixir-lang/tree-sitter-elixir")))
+#+end_example
+
+#+begin_src emacs-lisp
+(add-to-list 'major-mode-remap-alist '(elixir-mode . elixir-ts-mode))
+#+end_src
+
+Disable broken Credo
+#+begin_src emacs-lisp :tangle packages.el
+(package! flycheck-credo :disable t)
+#+end_src
+
+Use the LSP from direnv
+
+#+begin_src emacs-lisp
+(use-package eglot
+  :config
+  (with-eval-after-load 'eglot
+    (add-to-list 'eglot-server-programs
+                 '((elixir-mode elixir-ts-mode) . ("elixir-ls")))))
 #+end_src

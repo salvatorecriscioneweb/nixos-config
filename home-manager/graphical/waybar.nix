@@ -7,25 +7,26 @@
       mainBar = {
         height = 36;
         spacing = 8;
-        position = "top";
+        position = "bottom";
         layer = "top";
         margin-left = 0;
         margin-right = 0;
         margin-top = 0;
 
         modules-left = [
-          "sway/workspaces"
+          "niri/workspaces"
           "mpris"
         ];
         modules-center = [
           "idle_inhibitor"
           "pulseaudio"
           "cpu"
+          "memory"
+          "network"
           "temperature"
           "backlight"
           "keyboard-state"
           "battery"
-          "network"
         ];
         modules-right = [
           "tray"
@@ -71,12 +72,7 @@
           # "thermal-zone"= 2;
           "hwmon-path" = "/sys/class/hwmon/hwmon2/temp1_input";
           "critical-threshold" = 80;
-          "format" = "{temperatureC}°C {icon}";
-          "format-icons" = [
-            ""
-            ""
-            ""
-          ];
+          "format" = "{temperatureC}°C";
         };
         "backlight" = {
           # "device": "acpi_video1",
@@ -145,7 +141,7 @@
       }
 
       window#waybar {
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
           transition-property: background-color;
           transition-duration: .5s;
@@ -156,7 +152,7 @@
       }
 
       #workspaces button {
-          background: #2e3440;
+          background: #000000;
           color: #ffffff;
       }
 
@@ -229,13 +225,13 @@
       }
 
       #clock {
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
       }
 
       #battery {
           background-color: #ffffff;
-          color: #2e3440;
+          color: #000000;
       }
 
       #battery.charging, #battery.plugged {
@@ -246,7 +242,7 @@
       @keyframes blink {
           to {
               background-color: #ffffff;
-              color: #2e3440;
+              color: #000000;
           }
       }
 
@@ -261,21 +257,21 @@
       }
 
       label:focus {
-          background-color: #2e3440;
+          background-color: #000000;
       }
 
       #cpu {
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
       }
 
       #memory {
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
       }
 
       #disk {
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
           border: 1px solid #FFFFFF;
       }
@@ -287,83 +283,83 @@
       }
 
       #network {
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
       }
 
       #network.disconnected {
-          background-color: #2e3440;
+          background-color: #000000;
           color: red;
       }
 
       #pulseaudio {
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
       }
 
       #pulseaudio.muted {
-          background-color: #2e3440;
+          background-color: #000000;
           color: red;
       }
 
       #mpris {
-          background-color: #2e3440;
+          background-color: #000000;
           color: white;
       }
 
       #mpris.spotify {
-          background-color: #2e3440;
+          background-color: #000000;
           color: white;
       }
 
       #mpris.vlc {
-          background-color: #2e3440;
+          background-color: #000000;
           color: white;
       }
 
       #mpris.brave {
-          background-color: #2e3440;
+          background-color: #000000;
           color: white;
       }
 
       #custom-power{
-          background-color: #2e3440;
+          background-color: #000000;
           font-size: 18px;
           margin-right: 5px;
       }
 
       #custom-launcher{
-          background-color: #2e3440;
+          background-color: #000000;
           font-size: 20px;
           margin-left: 5px;
           border: 1px solid #FFFFFF;
       }
 
       #custom-layout{
-          background-color: #2e3440;
+          background-color: #000000;
           color: white;
           font-size:20px;
       }
 
       #custom-updater {
-          background-color: #2e3440;
+          background-color: #000000;
           color: white;
       }
 
       #custom-snip {
-          background-color: #2e3440;
+          background-color: #000000;
           color: skyblue;
           font-size: 20px;
       }
 
       #custom-wallpaper {
-          background-color: #2e3440;
+          background-color: #000000;
           color: pink;
           font-size: 20px;
       }
 
       #tags{
-          background-color: #2e3440;
+          background-color: #000000;
           font-size: 20px;
       }
 
@@ -385,12 +381,12 @@
 
 
       #taskbar{
-          background-color: #2e3440;
+          background-color: #000000;
           border-radius: 0px 20px 20px 0px;
       }
 
       #temperature {
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
       }
 
@@ -399,42 +395,42 @@
       }
 
       #tray {
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
       }
 
       #tray > .passive {
           -gtk-icon-effect: dim;
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
       }
 
       #tray > .needs-attention {
           -gtk-icon-effect: highlight;
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
       }
 
       #idle_inhibitor {
-          background-color: #2e3440;
+          background-color: #000000;
       }
 
       #idle_inhibitor.activated {
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
           border-radius: 20px 0px 0px 20px;
 
       }
 
       #language {
-          background-color: #2e3440;
+          background-color: #000000;
           color: #ffffff;
           min-width: 16px;
       }
 
       #keyboard-state {
           background: #97e1ad;
-          color: #2e3440;
+          color: #000000;
           min-width: 16px;
       }
 

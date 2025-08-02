@@ -2,7 +2,7 @@
 let
   my_emacs = {
     enable = true;
-    package = pkgs.emacs-nox;
+    package = pkgs.emacs-unstable-pgtk;
   };
 in
 {
@@ -11,9 +11,18 @@ in
     binutils
     coreutils
     unzip
+    gcc # Treesitter
     clang-tools
     gnutls
     fd
+
+    (aspellWithDicts (
+      ds: with ds; [
+        en
+        en-computers
+        en-science
+      ]
+    ))
 
     # -- [ Email ] --
     # mu
@@ -27,7 +36,7 @@ in
     sqlite
 
     # -- [ Treemacs ] --
-    python314
+    # python314
 
     # -- [ Format ] --
     nodejs_20
@@ -43,5 +52,4 @@ in
   ];
 
   programs.emacs = my_emacs;
-  services.emacs = my_emacs;
 }

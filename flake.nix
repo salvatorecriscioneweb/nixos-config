@@ -3,12 +3,14 @@
 
   inputs = {
     # --- [ Nix Packages ] ---
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     # --- [ Home Manager ] ---
     home-manager = {
-      url = "github:nix-community/home-manager";
+      # url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -18,34 +20,39 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # --- [ Agenix Shhh ] ---
+    # --- [ Agenix ] ---
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # --- [ Distrohoping every reboot ] ---
+    # --- [ Distro-hoping every reboot ] ---
     impermanence = {
       url = "github:nix-community/impermanence";
     };
 
-    # --- [ Skill issues on setup 1to1 ] ---
+    # --- [ Skill issue on setup 1to1 ] ---
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # --- [ Make stuff cool ] ---
+    # --- [ Make cool stuff ] ---
     stylix = {
-      url = "github:nix-community/stylix";
+      # url = "github:nix-community/stylix";
+      url = "github:nix-community/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
-      # url = "github:nix-community/nixvim/nixos-25.05";
+    # --- [ Each update of this flake may result in up to 20 minutes of compilation time. ] ---
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
+    # --- [ Niri ] ---
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

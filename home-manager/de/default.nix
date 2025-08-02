@@ -9,6 +9,7 @@
     xfce.thunar
   ];
 
+  # --- [ Sway ] ---
   wayland.windowManager.sway = {
     enable = true;
     systemd = {
@@ -34,11 +35,9 @@
         }
         {
           command = "${pkgs.waybar}/bin/waybar &";
-          always = true;
         }
         {
           command = "${pkgs.networkmanagerapplet}/bin/nm-applet &";
-          always = true;
         }
         {
           command = "${pkgs.light}/bin/light -S 50";
@@ -65,6 +64,7 @@
         lib.mkOptionDefault {
           "${modifier}+Return" = "exec ${pkgs.foot}/bin/footclient";
           "${modifier}+Shift+Return" = "exec ${pkgs.foot}/bin/foot";
+          "${modifier}+e" = "exec ${pkgs.emacs-unstable-pgtk}/bin/emacs";
           "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
           "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+";

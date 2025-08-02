@@ -11,17 +11,14 @@
 
   hardware.graphics.enable = true;
 
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
+  programs.niri.enable = true;
+  programs.niri.package = pkgs.niri-stable;
 
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-        user = "greeter";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri-session";
       };
     };
   };

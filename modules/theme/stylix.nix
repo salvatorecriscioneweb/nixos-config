@@ -8,12 +8,11 @@
       gtk.enable = false;
     };
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-light.yaml";
 
-    # Fonts
     fonts =
       let
-        nmono = "UbuntuMono Nerd Font";
+        nmono = "RecMonoDuotone Nerd Font";
         nnorm = "Inter";
       in
       {
@@ -35,9 +34,9 @@
         };
 
         sizes = {
-          desktop = 15;
-          applications = 14;
-          terminal = 18;
+          desktop = 13;
+          applications = 13;
+          terminal = 14;
         };
       };
   };
