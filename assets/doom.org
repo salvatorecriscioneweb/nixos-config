@@ -60,21 +60,11 @@ Setting some better defaults
 
 (display-time-mode 1)                             ; Enable time in the mode-line
 (global-subword-mode 1)                           ; Iterate through CamelCase words
-
-(setq-default
-      delete-by-moving-to-trash t                      ; Delete files to trash
-      window-combination-resize t                      ; take new window space from all other windows (not just current)
-      x-stretch-cursor t)
 #+end_src
 
 #+begin_src emacs-lisp
 (setq show-trailing-whitespace t)
 (setq evil-ex-substitute-global t)
-#+end_src
-
-Disable the window bar
-#+begin_src emacs-lisp
-(add-to-list 'default-frame-alist '(undecorated . t))
 #+end_src
 
 Bookmarks are somewhat like registers in that they record positions you can jump to.  Unlike registers, they have long names, and they persist automatically from one Emacs session to the next. The prototypical use of bookmarks is to record where you were reading in various files.

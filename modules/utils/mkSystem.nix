@@ -3,24 +3,32 @@
   inputs,
 }:
 name:
-{ system }:
+{
+  system,
+  darwin ? false,
+}:
 let
   hostConfig = ../../host/${name};
-  homeConfig = ../../home-manager/default.nix;
-  systemFunc = nixpkgs.lib.nixosSystem;
+  homeConfig = if darwin then ../../home-manager/darwin.nix else ../../home-manager/default.nix;
+
+  systemFunc = if darwin then inputs.nix-darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
+  home-manager =
+    if darwin then inputs.home-manager.darwinModules else inputs.home-manager.nixosModules;
+
+
+  isLinux = !darwin;
+  user = if !darwin then "ssalva" else "salvatorecriscione";
 in
 systemFunc {
   inherit system;
 
   modules = [
-    inputs.lanzaboote.nixosModules.lanzaboote
-    inputs.impermanence.nixosModules.impermanence
-    inputs.agenix.nixosModules.default
-    inputs.nix-index-database.nixosModules.nix-index
-    inputs.stylix.nixosModules.stylix
-    inputs.home-manager.nixosModules.home-manager
-    {
-
+    (if isLinux then inputs.lanzaboote.nixosModules.lanzaboote else {})
+    (if isLinux then inputs.impermanence.nixosModules.impermanence else {})
+    (if isLinux then inputs.agenix.nixosModules.default else {})
+    (if isLinux then inputs.nix-index-database.nixosModules.nix-index else {})
+    (if isLinux then inputs.stylix.nixosModules.stylix else inputs.stylix.darwinModules.stylix)
+    (if isLinux then {
       nixpkgs.overlays = with inputs; [
         emacs-overlay.overlay
         niri-flake.overlays.niri
@@ -34,17 +42,25 @@ systemFunc {
         ./secrets.nix
       ];
 
-    }
+    } else {})
     hostConfig
-    {
+    home-manager.home-manager {
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
         backupFileExtension = "backup";
-        sharedModules = [
+        sharedModules = if isLinux then [
           inputs.niri-flake.homeModules.niri
-        ];
-        users.ssalva = import homeConfig;
+        ] else [];
+        users.${user} = import homeConfig;
+      };
+    }
+    {
+      config._module.args = {
+        currentSystem = system;
+        currentSystemName = name;
+        currentSystemUser = user;
+        inputs = inputs;
       };
     }
   ];

@@ -55,19 +55,35 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # --- [ MacOS ] ---
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    {
+      nixpkgs,
+      nix-darwin,
+      self,
+      ...
+    }@inputs:
     let
       mkSystem = import ./modules/utils/mkSystem.nix {
         inherit nixpkgs inputs;
       };
+
     in
     {
       nixosConfigurations = {
         luna = mkSystem "luna" {
           system = "x86_64-linux";
+        };
+      };
+      darwinConfigurations = {
+        "Salvatores-MacBook-Pro" = mkSystem "deimos" {
+          system = "x86_64-darwin";
+          darwin = true;
         };
       };
     };
