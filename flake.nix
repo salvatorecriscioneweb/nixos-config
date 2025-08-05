@@ -57,8 +57,14 @@
     };
 
     # --- [ MacOS ] ---
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    chicago95-nix = {
+      url = "github:salvatorecriscioneweb/chicago95-nix";
+    };
   };
 
   outputs =

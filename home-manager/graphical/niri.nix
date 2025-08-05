@@ -11,9 +11,10 @@
       package = pkgs.niri;
       settings = {
         animations.enable = true;
+        animations.slowdown = 1.35;
         outputs = {
           "eDP-1" = {
-            scale = 1;
+            scale = 1.25;
           };
         };
         hotkey-overlay.skip-at-startup = true;
@@ -52,8 +53,8 @@
             gaps = 24;
             border =
               let
-                bg = config.lib.stylix.colors.base06;
-                bg_active = config.lib.stylix.colors.base08;
+                bg = "#000000";
+                bg_active = "#008080";
                 width = 4;
               in
               {
@@ -78,8 +79,10 @@
           {
             command = [
               (lib.getExe pkgs.swaybg)
+              #"-c"
+              #"008080"
               "-i"
-              "${../../assets/wallpapers/waves.jpg}"
+              "${../../assets/wallpapers/wallhaven-vpg3o5.jpg}"
             ];
           }
           {

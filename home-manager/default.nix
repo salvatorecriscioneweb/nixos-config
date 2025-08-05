@@ -17,8 +17,6 @@
     age
     wl-clipboard
 
-    lazydocker
-
     # --- [ Image Viewer ] ---
     xfce.ristretto
 
@@ -61,10 +59,10 @@
     ".config/doom/config.org" = {
       source = ../assets/doom.org;
     };
-    ".config/wallpapers" = {
-      source = ../assets/wallpapers;
-      recursive = true;
-    };
+    # ".config/wallpapers" = {
+    #   source = ../assets/wallpapers;
+    #   recursive = true;
+    # };
   };
 
   programs.home-manager.enable = true;
@@ -77,6 +75,11 @@
       x11.enable = false;
       gtk.enable = true;
     };
+  };
+
+  gtk = {
+    enable = true;
+    theme.name = "Chicago95";
   };
 
   stylix.targets = {

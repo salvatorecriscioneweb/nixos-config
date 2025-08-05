@@ -190,10 +190,12 @@ The first section is mostly empty since I don't require support for any specific
 
 #+begin_src emacs-lisp :tangle init.el
        :emacs
-       dired               ; making dired pretty [functional]
+       (dired               ; making dired pretty [functional]
+        +icons)
        electric            ; smarter, keyword-based electric-indent
        ;;eww               ; the internet is gross
-       ibuffer             ; interactive buffer management
+       (ibuffer             ; interactive buffer management
+        +icons)
        undo                ; persistent, smarter undo for your inevitable mistakes
        vc                  ; version-control and Emacs, sitting in a tree
 #+end_src
@@ -426,26 +428,17 @@ Dired is the file manager within Emacs.  Below, I setup keybindings for image pr
   (kbd "* /") 'dired-mark-directories
   (kbd "; d") 'epa-dired-do-decrypt
   (kbd "; e") 'epa-dired-do-encrypt)
-;; Get file icons in dired
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-;; With dired-open plugin, you can launch external programs for certain extensions
-;; For example, I set all .png files to open in 'imv' and all .mp4 files to open in 'mpv'
-(setq dired-open-extensions '(("gif" . "imv")
-                              ("jpg" . "imv")
-                              ("png" . "imv")
-                              ("mkv" . "mpv")
-                              ("mp4" . "mpv")))
 #+end_src
 
 *** Fonts
 Setup Fonts
 
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "RecMonoDuotone Nerd Font" :size 18)
-      doom-big-font (font-spec :family "RecMonoLinear Nerd Font" :size 26)
-      doom-variable-pitch-font (font-spec :family "Inter" :size 18 :weight 'light)
+(setq doom-font (font-spec :family "RecMonoDuotone Nerd Font" :size 16)
+      doom-big-font (font-spec :family "RecMonoLinear Nerd Font" :size 24)
+      doom-variable-pitch-font (font-spec :family "Inter" :size 16 :weight 'light)
       doom-emoji-font (font-spec :family "Noto Color Emoji")
-      doom-serif-font (font-spec :family "RecMonoLinear Nerd Font" :size 18))
+      doom-serif-font (font-spec :family "RecMonoLinear Nerd Font" :size 16))
 #+end_src
 
 *** Keybinds
@@ -493,7 +486,8 @@ Improved Keybinds
 *** Theme
 Set the theme
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'modus-operandi-tinted)
+(setq doom-theme 'modus-vivendi)
+(add-to-list 'default-frame-alist '(undecorated . t))
 #+END_SRC
 
 *** Customization

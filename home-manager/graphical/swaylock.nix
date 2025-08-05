@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       indicator-idle-visible = true;
-      image = "~/.config/wallpapers/wallpaper-blurred.jpg";
+      image = ../../assets/wallpapers/wallhaven-vpgo1m.jpg;
     };
   };
 }

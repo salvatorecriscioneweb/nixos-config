@@ -2,12 +2,13 @@
 {
   powerManagement = {
     enable = true;
+    powertop.enable = true;
   };
-
   services = {
     thermald.enable = lib.mkDefault true;
+    power-profiles-daemon.enable = lib.mkDefault true;
     tlp = {
-      enable = lib.mkDefault true;
+      enable = lib.mkDefault false;
       settings = {
         USB_EXCLUDE_PRINTER = 0;
         CPU_BOOST_ON_AC = 1;

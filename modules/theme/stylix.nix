@@ -8,7 +8,7 @@
       gtk.enable = false;
     };
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-light.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/windows-95.yaml";
 
     fonts =
       let
@@ -34,9 +34,9 @@
         };
 
         sizes = {
-          desktop = 13;
-          applications = 13;
-          terminal = 14;
+          desktop = 11;
+          applications = 11;
+          terminal = 12;
         };
       };
   };
