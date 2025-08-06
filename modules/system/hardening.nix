@@ -54,8 +54,8 @@ in
     ];
   };
 
-  environment.memoryAllocator.provider = l.mkDefault "scudo";
-  environment.variables.SCUDO_OPTIONS = l.mkDefault "ZeroContents=1";
+  # environment.memoryAllocator.provider = l.mkDefault "scudo";
+  # environment.variables.SCUDO_OPTIONS = l.mkDefault "ZeroContents=1";
 
   systemd.enableEmergencyMode = false;
 

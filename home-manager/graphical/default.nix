@@ -5,7 +5,7 @@
     ./browsers.nix
     ./zathura.nix
     ./waybar.nix
-    ./foot.nix
-    # ./kitty.nix
+    # ./foot.nix
+    ./kitty.nix
   ];
 }

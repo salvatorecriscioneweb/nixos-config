@@ -16,6 +16,13 @@
           "eDP-1" = {
             scale = 1.25;
           };
+          "DP-5" = {
+            scale = 1.75;
+          };
+          "DP-6" = {
+            scale = 1.75;
+          };
+
         };
         hotkey-overlay.skip-at-startup = true;
         cursor.hide-when-typing = true;
