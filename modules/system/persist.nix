@@ -36,6 +36,7 @@
         ".hex"
         ".gnupg"
         ".ssh"
+        ".tmux"
 
         # Locals
         ".local/share/warp"

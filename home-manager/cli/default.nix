@@ -15,5 +15,6 @@
     ./bat.nix
     ./lazygit.nix
     ./nh.nix
+    ./tmux.nix
   ];
 }

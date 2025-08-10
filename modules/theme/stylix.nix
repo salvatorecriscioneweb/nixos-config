@@ -8,11 +8,11 @@
       gtk.enable = false;
     };
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/windows-95.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
     fonts =
       let
-        nmono = "RecMonoDuotone Nerd Font";
+        nmono = "Monoid Nerd Font";
         nnorm = "Inter";
       in
       {

@@ -127,6 +127,18 @@ in
     ];
   };
 
+  fileSystems."/persist/home/ssalva/.tmux" = {
+    device = "/persist/home/ssalva/.tmux";
+    fsType = "none";
+    options = [
+      "defaults"
+      "bind"
+      "user"
+      "exec"
+      "nofail"
+    ];
+  };
+
   fileSystems."/persist/home/ssalva/dev" = {
     device = "/persist/home/ssalva/dev";
     fsType = "none";

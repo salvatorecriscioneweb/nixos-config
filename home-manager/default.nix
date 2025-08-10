@@ -85,10 +85,10 @@
   stylix.targets = {
     vencord.enable = false;
     blender.enable = false;
-    tmux.enable = false;
+    # tmux.enable = false;
     qutebrowser.enable = false;
     emacs.enable = false;
-    waybar.enable = false;
+    # waybar.enable = false;
     kde.enable = false;
     qt.enable = false;
     gtk.enable = false;

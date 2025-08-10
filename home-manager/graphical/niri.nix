@@ -11,7 +11,6 @@
       package = pkgs.niri;
       settings = {
         animations.enable = true;
-        animations.slowdown = 1.35;
         outputs = {
           "eDP-1" = {
             scale = 1.25;
@@ -31,7 +30,7 @@
             clip-to-geometry = true;
             geometry-corner-radius =
               let
-                r = 0.0;
+                r = 12.0;
               in
               {
                 bottom-left = r;
@@ -60,8 +59,8 @@
             gaps = 24;
             border =
               let
-                bg = "#000000";
-                bg_active = "#008080";
+                bg = config.lib.stylix.colors.base06;
+                bg_active = config.lib.stylix.colors.base08;
                 width = 4;
               in
               {
@@ -87,9 +86,9 @@
             command = [
               (lib.getExe pkgs.swaybg)
               #"-c"
-              #"008080"
+              #"000000"
               "-i"
-              "${../../assets/wallpapers/wallhaven-vpg3o5.jpg}"
+              "${../../assets/wallpapers/wallhaven-vpgo1m.jpg}"
             ];
           }
           {
@@ -100,16 +99,15 @@
             ];
           }
           {
-            command = [
-              (lib.getExe pkgs.foot)
-              "--server"
-            ];
-          }
-          {
             command = [ (lib.getExe pkgs.xwayland-satellite) ];
           }
           {
-            command = [ (lib.getExe pkgs.waybar) ];
+            command = [
+              "systemctl"
+              "restart"
+              "--user"
+              "waybar"
+            ];
           }
           {
             command = [ "${pkgs.networkmanagerapplet}/bin/nm-applet" ];
@@ -184,7 +182,7 @@
           "Mod+C".action = config.lib.niri.actions.center-column;
           "Mod+Q".action = config.lib.niri.actions.close-window;
           "Mod+Return".action.spawn = [
-            "${pkgs.foot}/bin/footclient"
+            "${pkgs.kitty}/bin/kitty"
           ];
           "Mod+E".action.spawn = [
             "${pkgs.emacs-unstable-pgtk}/bin/emacs"

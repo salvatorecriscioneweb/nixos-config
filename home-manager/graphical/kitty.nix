@@ -14,7 +14,7 @@
       window_padding_width = 12;
       cursor_trail = 3;
       tab_bar_align = "center";
-      # hide_window_decorations = "yes";
+      hide_window_decorations = "yes";
     };
 
     keybindings = {

@@ -434,17 +434,17 @@ Dired is the file manager within Emacs.  Below, I setup keybindings for image pr
 Setup Fonts
 
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "RecMonoDuotone Nerd Font" :size 16)
-      doom-big-font (font-spec :family "RecMonoLinear Nerd Font" :size 24)
+(setq doom-font (font-spec :family "Monoid Nerd Font" :size 16)
+      doom-big-font (font-spec :family "Monoid Nerd Font" :size 24)
       doom-variable-pitch-font (font-spec :family "Inter" :size 16 :weight 'light)
       doom-emoji-font (font-spec :family "Noto Color Emoji")
-      doom-serif-font (font-spec :family "RecMonoLinear Nerd Font" :size 16))
+      doom-serif-font (font-spec :family "Monoid Nerd Font" :size 16))
 #+end_src
 
 *** Keybinds
 Enable Mouse mode
 #+begin_src emacs-lisp
-;;;; Mouse scrolling in terminal emacs
+;; Mouse scrolling in terminal emacs
 (unless (display-graphic-p)
   ;; activate mouse-based scrolling
   (xterm-mouse-mode 1))
@@ -486,7 +486,7 @@ Improved Keybinds
 *** Theme
 Set the theme
 #+BEGIN_SRC emacs-lisp
-(setq doom-theme 'modus-vivendi)
+(setq doom-theme 'doom-one)
 (add-to-list 'default-frame-alist '(undecorated . t))
 #+END_SRC
 

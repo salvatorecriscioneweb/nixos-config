@@ -36,7 +36,7 @@ in
     sqlite
 
     # -- [ Treemacs ] --
-    # python314
+    python314
 
     # -- [ Format ] --
     nodejs_20
