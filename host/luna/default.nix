@@ -11,9 +11,10 @@
     ../../modules/theme
   ];
 
-  # environment.systemPackages = [
-  #   pkgs.qemu
-  # ];
+  environment.systemPackages = [
+    #   pkgs.qemu
+    pkgs.tpm2-tss
+  ];
   # virtualisation.libvirtd.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

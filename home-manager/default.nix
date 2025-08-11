@@ -10,6 +10,7 @@
     ./cli
     ./graphical
     ./graphical/niri.nix
+    ./dev
   ];
 
   home.packages = with pkgs; [
@@ -79,19 +80,33 @@
 
   gtk = {
     enable = true;
-    theme.name = "Chicago95";
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+  };
+
+  home.sessionVariables = {
+    DISPLAY = ":0"; # xwayland-satellite
+    NH_FLAKE = "/home/ssalva/dev/personal/nixos-config"; # Flake for NH
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = 1;
+    MOZ_ENABLE_WAYLAND = 1;
+    ELECTRON_OZONE_PLATFORM_HINT = 1;
+    DO_NOT_TRACK = 1;
   };
 
   stylix.targets = {
     vencord.enable = false;
     blender.enable = false;
-    # tmux.enable = false;
     qutebrowser.enable = false;
     emacs.enable = false;
-    # waybar.enable = false;
     kde.enable = false;
     qt.enable = false;
-    gtk.enable = false;
+    rofi.enable = true;
   };
 
   xdg.mimeApps = {
@@ -99,7 +114,7 @@
     defaultApplications =
       let
         default_browser = "google-chrome.desktop";
-        default_terminal = "footclient.desktop";
+        default_terminal = "kitty.desktop";
         default_image_viewer = "ristretto.desktop";
       in
       {

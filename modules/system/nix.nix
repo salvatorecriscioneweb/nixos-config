@@ -7,6 +7,8 @@
     package = pkgs.nixVersions.latest;
     optimise.automatic = true;
 
+    daemonCPUSchedPolicy = "idle";
+
     gc = {
       automatic = true;
       options = "--delete-older-than 3d";

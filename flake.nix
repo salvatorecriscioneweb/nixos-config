@@ -62,9 +62,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    chicago95-nix = {
-      url = "github:salvatorecriscioneweb/chicago95-nix";
-    };
+    # --- [ Old school ] ---
+    # chicago95-nix = {
+    #   url = "github:salvatorecriscioneweb/chicago95-nix";
+    # };
   };
 
   outputs =

@@ -10,6 +10,7 @@
   zramSwap.enable = lib.mkDefault true;
 
   boot = {
+    initrd.systemd.enable = true;
     loader = {
       timeout = 0;
       systemd-boot = {

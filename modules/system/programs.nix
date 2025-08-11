@@ -9,13 +9,11 @@
 
     adb.enable = true;
 
-    thunar = {
+    gnupg.agent = {
       enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-media-tags-plugin
-        thunar-volman
-      ];
+      enableSSHSupport = true;
+      #pinentryFlavor = "gtk2"; ## 2024-06-01: not available with NixOS 24.05 any more
+      pinentryPackage = pkgs.pinentry-gtk2;
     };
 
     nix-index-database = {
@@ -28,5 +26,7 @@
   environment.systemPackages = with pkgs; [
     # Secure Boot
     sbctl
+    # File Manager
+    nautilus
   ];
 }

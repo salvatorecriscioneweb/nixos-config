@@ -37,7 +37,7 @@ systemFunc {
 
           environment.systemPackages = with inputs; [
             agenix.packages.${system}.default
-            chicago95-nix.packages.${system}.default
+            # chicago95-nix.packages.${system}.default
           ];
 
           imports = [

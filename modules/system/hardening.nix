@@ -142,7 +142,7 @@ in
         LockPersonality = true;
         PrivateTmp = true;
       };
-      "thermald".serviceConfig = default_protection;
+      # "thermald".serviceConfig = default_protection;
     };
   boot.blacklistedKernelModules = [
     # Obscure network protocols

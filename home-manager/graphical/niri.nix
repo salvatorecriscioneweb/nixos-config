@@ -56,7 +56,7 @@
             shadow = {
               enable = false;
             };
-            gaps = 24;
+            gaps = 16;
             border =
               let
                 bg = config.lib.stylix.colors.base06;

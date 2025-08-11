@@ -23,6 +23,7 @@
 
     users.ssalva = {
       directories = [
+        "Android"
         "Downloads"
         "Music"
         "Pictures"
@@ -37,6 +38,7 @@
         ".gnupg"
         ".ssh"
         ".tmux"
+        ".skiko"
 
         # Locals
         ".local/share/warp"
@@ -45,6 +47,7 @@
 
         # Thunderbird
         ".cache/thunderbird"
+        ".cache/Google"
 
         # Config
         # ".config"
