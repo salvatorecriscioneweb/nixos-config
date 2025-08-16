@@ -6,21 +6,6 @@
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
     ];
-    config =
-      let
-        common = {
-          default = [
-            "gnome"
-            "gtk"
-          ];
-          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-        };
-      in
-      {
-        inherit common;
-        niri = common;
-      };
-    configPackages = [ pkgs.niri-stable ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -29,12 +14,7 @@
 
   hardware.graphics.enable = true;
 
-  programs.niri.enable = true;
-  programs.niri.package = pkgs.niri-stable;
-
-  services = {
-    displayManager.defaultSession = "niri";
-  };
+  programs.labwc.enable = true;
 
   # unlock keyring on login
   security.pam.services.greetd.enableGnomeKeyring = true;
@@ -43,7 +23,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-user-session --cmd niri-session --greeting 'welcome back'";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-user-session --cmd 'dbus-launch --exit-with-session labwc' --greeting 'welcome back'";
         user = "ssalva";
       };
     };

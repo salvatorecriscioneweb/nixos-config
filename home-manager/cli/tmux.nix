@@ -36,6 +36,7 @@
       set -g @continuum-restore 'off'
       set -g @resurrect-capture-pane-contents 'on'
       set -g @resurrect-strategy-nvim 'session'
+      set -g @resurrect-dir '/persist/home/ssalva/tmux'
       setenv -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.tmux/plugins/"
       if "test ! -d ~/.tmux/plugins/tpm" \
       "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"

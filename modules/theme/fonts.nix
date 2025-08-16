@@ -18,6 +18,7 @@
       nerd-fonts.symbols-only
 
       # -- [ Nerd Fonts ] --
+      nerd-fonts.jetbrains-mono
       nerd-fonts.recursive-mono
       nerd-fonts.monoid
     ];

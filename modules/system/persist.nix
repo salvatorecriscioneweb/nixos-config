@@ -8,6 +8,7 @@
       "/var/lib/sbctl"
       "/var/lib/fprint"
       "/var/lib/cloudflare-warp"
+      "/var/lib/postgresql"
       "/var/lib/libvirt"
       "/var/lib/docker"
       "/var/lib/systemd/coredump"
@@ -39,6 +40,11 @@
         ".ssh"
         ".tmux"
         ".skiko"
+
+        ".local/share/icons/Haiku"
+
+        # Theme
+        # ".themes/WhiteSur-Light"
 
         # Locals
         ".local/share/warp"

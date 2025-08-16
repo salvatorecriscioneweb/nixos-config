@@ -1,8 +1,7 @@
 {
   imports = [
-    # ./kanshi.nix
+    ./kanshi.nix
     ./swayidle.nix
     ./cliphist.nix
-    ./security.nix
   ];
 }

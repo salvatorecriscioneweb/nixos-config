@@ -27,6 +27,6 @@
     # Secure Boot
     sbctl
     # File Manager
-    nautilus
+    nemo-with-extensions
   ];
 }

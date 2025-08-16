@@ -5,13 +5,15 @@
 
     targets = {
       chromium.enable = false;
+      gtk.enable = false;
     };
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
+    base16Scheme = ../../assets/oxocarbon.yaml;
 
     fonts =
       let
-        nmono = "Monoid Nerd Font";
+        nmono = "JetbrainsMono Nerd Font";
         nnorm = "Inter";
       in
       {

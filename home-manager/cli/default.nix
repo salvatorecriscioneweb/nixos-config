@@ -1,7 +1,7 @@
 {
   imports = [
     ./git.nix
-    ./gh.nix
+    # ./gh.nix
     ./fish.nix
     ./starship.nix
     ./helix.nix

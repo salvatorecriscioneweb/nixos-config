@@ -185,7 +185,7 @@
             "${pkgs.kitty}/bin/kitty"
           ];
           "Mod+E".action.spawn = [
-            "${pkgs.emacs-unstable-pgtk}/bin/emacs"
+            "${pkgs.emacs-pgtk}/bin/emacs"
           ];
           "Mod+X".action.spawn = [
             (lib.getExe pkgs.rofi-wayland)

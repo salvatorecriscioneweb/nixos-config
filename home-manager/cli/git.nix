@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -9,6 +10,7 @@
       github.user = "salvatorecriscioneweb";
       color.ui = true;
       init.defaultBranch = "main";
+      credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
     };
     # signing = {
     #   format = "openpgp";

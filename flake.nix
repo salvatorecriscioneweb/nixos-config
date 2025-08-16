@@ -44,18 +44,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # --- [ Each update of this flake may result in up to 20 minutes of compilation time. ] ---
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # --- [ Niri ] ---
-    niri-flake = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # --- [ MacOS ] ---
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";

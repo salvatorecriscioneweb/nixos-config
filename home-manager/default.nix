@@ -9,11 +9,16 @@
     ./services
     ./cli
     ./graphical
-    ./graphical/niri.nix
+    ./graphical/labwc.nix
+    ./graphical/kanshi.nix
     ./dev
   ];
 
   home.packages = with pkgs; [
+    # --- [ GTK Theme ] ---
+    whitesur-gtk-theme
+
+    # --- [ Generic ] ---
     chafa
     age
     wl-clipboard
@@ -21,7 +26,6 @@
     # --- [ Image Viewer ] ---
     xfce.ristretto
 
-    xfce.mousepad
     xfce.xfce4-notifyd
 
     # Video Viewer
@@ -52,18 +56,17 @@
     # -- [ Slack ] --
     slack
 
-    htop
-    btop
+    # (nerdfonts.override { fonts = ["Hack"]; })
   ];
 
   home.file = {
+    ".config/wallpapers" = {
+      source = ../assets/wallpapers;
+      recursive = true;
+    };
     ".config/doom/config.org" = {
       source = ../assets/doom.org;
     };
-    # ".config/wallpapers" = {
-    #   source = ../assets/wallpapers;
-    #   recursive = true;
-    # };
   };
 
   programs.home-manager.enable = true;
@@ -73,24 +76,22 @@
       package = pkgs.phinger-cursors;
       name = "phinger-cursors-light";
       size = 32;
-      x11.enable = false;
+      x11.enable = true;
       gtk.enable = true;
     };
   };
 
   gtk = {
     enable = true;
-    iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
+    theme = {
+      name = "WhiteSur-Light";
     };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = true;
+    iconTheme = {
+      name = "Haiku";
     };
   };
 
   home.sessionVariables = {
-    DISPLAY = ":0"; # xwayland-satellite
     NH_FLAKE = "/home/ssalva/dev/personal/nixos-config"; # Flake for NH
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = 1;
@@ -106,6 +107,9 @@
     emacs.enable = false;
     kde.enable = false;
     qt.enable = false;
+    gtk.enable = false;
+    waybar.enable = false;
+    tofi.enable = false;
     rofi.enable = true;
   };
 

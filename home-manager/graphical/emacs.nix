@@ -1,10 +1,4 @@
 { pkgs, ... }:
-let
-  my_emacs = {
-    enable = true;
-    package = pkgs.emacs-unstable-pgtk;
-  };
-in
 {
   home.packages = with pkgs; [
     # -- [ General ] --
@@ -12,6 +6,7 @@ in
     coreutils
     unzip
     gcc # Treesitter
+
     clang-tools
     gnutls
     fd
@@ -28,15 +23,14 @@ in
     # mu
     # isync
 
-    # --[ Org ] --
-    # gnuplot
-    zstd
-
     # -- [ Roam ] --
     sqlite
 
     # -- [ Treemacs ] --
     python314
+
+    # -- [ Elixir ] ---
+    lexical
 
     # -- [ Format ] --
     nodejs_20
@@ -51,5 +45,13 @@ in
     typescript-language-server
   ];
 
-  programs.emacs = my_emacs;
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs-pgtk;
+  };
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs-pgtk;
+    defaultEditor = true;
+  };
 }

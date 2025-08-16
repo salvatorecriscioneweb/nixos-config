@@ -30,11 +30,6 @@ systemFunc {
     (
       if isLinux then
         {
-          nixpkgs.overlays = with inputs; [
-            emacs-overlay.overlay
-            niri-flake.overlays.niri
-          ];
-
           environment.systemPackages = with inputs; [
             agenix.packages.${system}.default
             # chicago95-nix.packages.${system}.default
@@ -55,13 +50,6 @@ systemFunc {
         useGlobalPkgs = true;
         useUserPackages = true;
         backupFileExtension = "backup";
-        sharedModules =
-          if isLinux then
-            [
-              inputs.niri-flake.homeModules.niri
-            ]
-          else
-            [ ];
         users.${user} = import homeConfig;
       };
     }
