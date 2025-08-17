@@ -9,7 +9,7 @@
     ./services
     ./cli
     ./graphical
-    ./graphical/labwc.nix
+    ./graphical/river.nix
     ./graphical/kanshi.nix
     ./dev
   ];
@@ -110,7 +110,7 @@
     gtk.enable = false;
     waybar.enable = false;
     tofi.enable = false;
-    rofi.enable = true;
+    sway.enable = true;
   };
 
   xdg.mimeApps = {

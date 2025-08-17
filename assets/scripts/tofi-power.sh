@@ -19,7 +19,7 @@
 
 case $(printf "%s\n" "Logout" "Reboot" "Suspend" "Shutdown" | tofi -c ~/.config/tofi/config_power_bottom $@) in
 	"Logout")
-		labwc --exit
+		sway exit
 		;;
 	"Reboot")
 		systemctl reboot

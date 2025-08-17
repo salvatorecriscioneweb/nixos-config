@@ -1,20 +1,31 @@
 { pkgs, ... }:
 {
+  hardware.graphics.enable = true;
+
   xdg.portal = {
     enable = true;
+    config.common.default = "*";
     extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
     ];
   };
-
   environment.systemPackages = with pkgs; [
     xdg-utils
   ];
 
-  hardware.graphics.enable = true;
-
-  programs.labwc.enable = true;
+  programs.river = {
+    enable = true;
+    xwayland.enable = true;
+    extraPackages = with pkgs; [
+      swaybg
+      tofi
+      light
+      gammastep
+      emacs-pgtk
+      nemo-with-extensions
+    ];
+  };
 
   # unlock keyring on login
   security.pam.services.greetd.enableGnomeKeyring = true;
@@ -23,7 +34,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-user-session --cmd 'dbus-launch --exit-with-session labwc' --greeting 'welcome back'";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --remember-user-session --cmd 'river' --greeting 'Bombay'";
         user = "ssalva";
       };
     };

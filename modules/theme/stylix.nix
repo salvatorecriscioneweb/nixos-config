@@ -8,8 +8,7 @@
       gtk.enable = false;
     };
 
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
-    base16Scheme = ../../assets/oxocarbon.yaml;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
 
     fonts =
       let

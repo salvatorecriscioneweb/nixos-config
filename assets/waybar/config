@@ -4,15 +4,18 @@
 	//"mode":	"dock",
     "height": 36, // Waybar height (to be removed for auto height)
     //"width": 200, // Waybar width
-	"margin": "0 4 4 4",
+	"margin": "0 6 6 6",
     "spacing": 12, // Gaps between modules (4px)
 //    "exclusive": false,
     // Choose the order of the modules
     "modules-left": ["wlr/taskbar"],
-    //"modules-center": ["clock"],
-    "modules-right": ["clock", "custom/gammastep", "custom/write", "network", "battery"],
+    "modules-center": ["clock"],
+    "modules-right": ["temperature", "idle_inhibitor", "custom/gammastep", "tray", "network", "battery", "pulseaudio"],
     // Modules configuration
 
+    "tray": {
+            "spacing": 4,
+    },
   "wlr/taskbar": {
     "format": "{name} ",
     "icon-size": 18,
@@ -23,7 +26,7 @@
         "rewrite": {
                    "Firefox": "",
                    "Sylpheed": "",
-                   "kitty": "🗖",
+                   "Kitty": "🗖",
                    "Files": "",
                    "Code - OSS - URL Handler": "",
                    "Emacs": "",
@@ -36,38 +39,6 @@
                    "Telegram Desktop": "",
                    "Advanced Network Configuration": "",
                }
-    },
-    "custom/command": {
-      "format": "RUN  <span color='#666'>::</span>  ",
-//		"format": "RUN",
-        "on-click-right": "$HOME/.config/scripts/tofi-power.sh",
-        "on-click": "tofi-drun",
-        "tooltip": false
-    },
-    "custom/write": {
-		"format": "",
- //       "on-click-right": "$HOME/.config/scripts/tofi-power.sh",
-       "on-click": "foot --title=Diary --override=font=JetbrainsMono:size=14 wordgrinder ~/note/start.wg",
-//        "on-click": "xwordgrinder ~/note/start.wg",
-        "tooltip": false
-    },
-
-    "custom/wpPrevNext": {
-        "format": "{icon}",
-        "tooltip": false,
-        "format-icons": "← →",
-        "on-click": "wtype -M win -M ctrl -k right -m win -m ctrl 2> /dev/null",
-        "on-scroll-up": "wtype -M win -M ctrl -k left -m win -m ctrl 2> /dev/null",
-        "on-scroll-down": "wtype -M win -M ctrl -k right -m win -m ctrl 2> /dev/null",
-    },
-
-    "custom/wpNext": {
-        "format": "{icon}",
-        "tooltip": false,
-        "format-icons": {
-            "default": "→"
-        },
-        "on-click": "wtype -M win -M ctrl -k right -m win -m ctrl 2> /dev/null"
     },
 
     "idle_inhibitor": {
@@ -136,8 +107,8 @@
             "warning": 15,
             "critical": 5
         },
-        //"format": "{capacity}%",
-        "format": "{icon}",
+        "format": "{capacity}%",
+        //"format": "{icon}",
         "format-charging": "",
         "format-plugged": "",
         //"format-alt": "{power}W",
@@ -146,7 +117,7 @@
         "format-icons": ["", "", "", "", ""],
         "tooltip-format": "{power}W - {capacity}%",
         //"format-rotate": "270",
-        "rotate": 90
+        //"rotate": 90
 
     },
     "battery#bat2": {
